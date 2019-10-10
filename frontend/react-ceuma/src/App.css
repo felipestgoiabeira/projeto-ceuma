@@ -1,22 +1,57 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+
+}
+html, body, #root {
+    min-height: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
+body{
+  background: #000 url('./assets/homebg.jpg') no-repeat;
+  background-size: cover;
+  -webkit-font-smoothing: antialisied !important ;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body, input button{
+  font-family: 'Roboto', Arial, Helvetica
+}
+
+.container{
+  margin: 80px auto 0;
+  max-width: 700px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+.content{
+  width: 100% ;
+  background: #FFF;
+  border-radius: 4px;
+  padding: 30px;
+}
+img{
+  width: 140,5;
+}
+.content button.btn{
+  border : 0;
+  border-radius: 2px;
+  width: 100%;
+  height: 42px;
+  padding:  0 20px;
+  font-size: 16px;
+  font-weight: bold;
+  background: #0273b4;
+  color: #fff;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #09d3ac;
+.content button.btn:hover{
+  background: #005586;
 }
