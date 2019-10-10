@@ -1,3 +1,5 @@
+const con = require('../db');
+
 module.exports = {
     async show(id) {
         return new Promise((resolve, reject) => {
@@ -24,36 +26,41 @@ module.exports = {
         });
     },
 
-    async store(nome, cpf, endereço, cep, email, telefone) {
+    async store(nome, cpf, endereco, cep, email, telefone, idCurso) {
         return new Promise((resolve, reject) => {
-            con.query('INSERT INTO Alunos (nome, cpf, endereço, cep, email, telefone) VALUES ( ?, curdate(), ?)',
-                [nome, cpf, endereço, cep, email, telefone], (err, result) => {
+            con.query('INSERT INTO Alunos (nome, cpf, endereco, cep, email, telefone, idCursos) VALUES ( ?, ?, ?, ?, ?, ? ,?)',
+                [nome, cpf, endereco, cep, email, telefone,idCurso], (err, result) => {
                     if (err) {
+                        console.log("Algo está errado...")
+                        console.log(err);
                         return reject(err);
                     }
+                    //console.log(result);
                     return resolve(result);
                 });
         });
     },
 
     async update(req) {
-        const { nome, cpf, endereço, cep, email, telefone } = req.body;
-
+        const { nome, cpf, endereco, cep, email, telefone, idCurso} = req.body;
+        const {idAluno} = req.query;
+        console.log(req.body);
         return new Promise((resolve, reject) => {
-            con.query('UPDATE Alunos SET nome = ?, cpf = ?, email = ?, telefone = ? WHERE idCurso = ?',
-                [nome, cpf, endereço, cep, email, telefone], (err, result) => {
+            con.query('UPDATE Alunos SET nome = ?, cpf = ?, endereco = ?, cep =? ,email = ?, telefone = ?, idCursos =? WHERE idAluno = ?',
+                [nome, cpf, endereco, cep, email, telefone, idCurso, idAluno], (err, result) => {
                     if (err) {
+                        console.log(err);
                         return reject(err);
                     }
-                    return resolve(result);
+                    return resolve(result.message);
                 });
         });
     },
 
-    async delete(idCurso) {
+    async delete(idAluno) {
         return new Promise((resolve, reject) => {
-            con.query('DELETE FROM Cursos WHERE idAluno = ?', [idCurso], (err, result) => {
-                if (err) {
+            con.query('DELETE FROM Alunos WHERE idAluno = ?', [idAluno],(err, result) =>{
+                if(err){
                     return reject(err);
                 }
                 return resolve(result);

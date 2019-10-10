@@ -29,8 +29,8 @@ module.exports = {
 
     async store(nome, cargaHoraria) {
         return new Promise((resolve, reject) => {
-            con.query('INSERT INTO Cursos (nome, data, cargaHoraria) VALUES ( ?, curdate(), ?)', [nome, cargaHoraria],(err, result) =>{
-                if(err){
+            con.query('INSERT INTO Cursos (nome, data, cargaHoraria) VALUES ( ?, curdate(), ?)', [nome, cargaHoraria], (err, result) => {
+                if (err) {
                     return reject(err);
                 }
                 return resolve(result);
@@ -39,11 +39,12 @@ module.exports = {
     },
 
     async update(req) {
-        const {nome, cargaHoraria, idCurso}= req.body;
-
+        const { nome, cargaHoraria } = req.body;
+        const { idCurso } = req.query
         return new Promise((resolve, reject) => {
-            con.query('UPDATE Cursos SET nome = ? , cargaHoraria = ?  WHERE idCurso = ?', [nome, cargaHoraria, idCurso],(err, result) =>{
-                if(err){
+            con.query('UPDATE Cursos SET nome = ? , cargaHoraria = ?  WHERE idCurso = ?', [nome, cargaHoraria, idCurso], (err, result) => {
+                if (err) {
+                    console.log(err);
                     return reject(err);
                 }
                 return resolve(result);
@@ -53,8 +54,8 @@ module.exports = {
 
     async delete(idCurso) {
         return new Promise((resolve, reject) => {
-            con.query('DELETE FROM Cursos WHERE idCurso = ?', [idCurso],(err, result) =>{
-                if(err){
+            con.query('DELETE FROM Cursos WHERE idCurso = ?', [idCurso], (err, result) => {
+                if (err) {
                     return reject(err);
                 }
                 return resolve(result);
@@ -62,7 +63,7 @@ module.exports = {
         });
     }
 
-        
+
 
 
 }
