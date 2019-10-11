@@ -141,7 +141,7 @@ export default class EditarAlunos extends Component {
         return (<>
 
             <form onSubmit={this.onSubmit}>
-                <h3>Adicionar Alunos</h3>
+                <h3>Alterar Aluno</h3>
                 <div className="form-row">
                     <div className="form-group col-md-6">
                         <label htmlFor="inputName4">Nome</label>

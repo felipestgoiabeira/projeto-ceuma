@@ -52,6 +52,7 @@ export default class EditarCursos extends Component {
         return(<>
 
         <form onSubmit={this.onSubmit}>
+            <h3>Alterar Curso</h3>
             <div className="form-row">
                 <div className="form-group col-md-6">
                     <label htmlFor="inputName4">Nome</label>
