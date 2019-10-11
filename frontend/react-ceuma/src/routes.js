@@ -1,12 +1,14 @@
 import React from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
-import Home from './pages/home';
-import AdicionarAlunos from './pages/adicionarAlunos';
-import AdicionarCursos from './pages/adicionarCursos';
-import Alunos from './pages/Alunos';
-import Cursos from './pages/Cursos';
+import Home from './pages/home/index.';
+import AdicionarAlunos from './pages/adicionarAlunos/index.component';
+import AdicionarCursos from './pages/adicionarCursos/index..component';
+import Alunos from './pages/alunos/index.component';
+import Cursos from './pages/cursos/index.component'  ;
 import ListarAlunos from './pages/listarAlunos';
+
+
 
 export default function Router(){
 
@@ -21,7 +23,8 @@ export default function Router(){
             <Route path='/alunos' exact component={Alunos}></Route>
             <Route path='/cursos' exact component={Cursos}></Route>
             <Route path='/listarAlunos' exact component={ListarAlunos}></Route>
-
+            
+            
             
         </Switch>
         

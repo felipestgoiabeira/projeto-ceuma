@@ -13,7 +13,7 @@ router.get('/cursos', async (req, res) => {
 
     } catch (e) {
         console.log(e);
-        res.sendStatus(500);
+        res.sendStatus(404).status("Dados não encontrados");
 
     }
 });
@@ -69,7 +69,7 @@ router.get('/alunos', async (req, res) => {
         return res.json(results);
 
     } catch (e) {
-        console.log(e);
+        theo
         res.sendStatus(500);
 
     }

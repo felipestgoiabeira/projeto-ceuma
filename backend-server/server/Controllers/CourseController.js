@@ -29,7 +29,7 @@ module.exports = {
 
     async store(nome, cargaHoraria) {
         return new Promise((resolve, reject) => {
-            con.query('INSERT INTO Cursos (nome, data, cargaHoraria) VALUES ( ?, curdate(), ?)', [nome, cargaHoraria], (err, result) => {
+            con.query('INSERT INTO Cursos (nome, dataRegistro, cargaHoraria) VALUES ( ?, curdate(), ?)', [nome, cargaHoraria], (err, result) => {
                 if (err) {
                     return reject(err);
                 }

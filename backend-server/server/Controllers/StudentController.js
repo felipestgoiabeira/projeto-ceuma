@@ -29,7 +29,7 @@ module.exports = {
     async store(nome, cpf, endereco, cep, email, telefone, idCurso) {
         return new Promise((resolve, reject) => {
             con.query('INSERT INTO Alunos (nome, cpf, endereco, cep, email, telefone, idCursos) VALUES ( ?, ?, ?, ?, ?, ? ,?)',
-                [nome, cpf, endereco, cep, email, telefone,idCurso], (err, result) => {
+                [nome, cpf, endereco, cep, email, telefone, idCurso], (err, result) => {
                     if (err) {
                         console.log("Algo está errado...")
                         console.log(err);
