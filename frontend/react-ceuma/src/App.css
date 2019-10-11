@@ -61,3 +61,6 @@ img{
 .nav.navbar-expanded-lg.nav-dark.bg-light li a {
   color: black;
 }
+div.exec {
+  padding: 0px 20px 0px 20px;
+}

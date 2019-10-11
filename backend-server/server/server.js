@@ -10,6 +10,6 @@ app.use(express.json());
 
 app.use('/', routes);
 
-app.listen('3345', () =>{
+app.listen('3346', () =>{
     console.log("Server is running")
 });

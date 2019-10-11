@@ -12,8 +12,10 @@
   "dependencies": {
     "babel": "^6.23.0",
     "cors": "^2.8.5",
+    "excel4node": "^1.7.2",
     "express": "^4.17.1",
-    "mysql": "^2.17.1"
+    "mysql": "^2.17.1",
+    "node-excel-export": "^1.4.4"
   },
   "devDependencies": {
     "nodemon": "^1.18.8"

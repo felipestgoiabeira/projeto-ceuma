@@ -41,10 +41,9 @@ module.exports = {
         });
     },
 
-    async update(req) {
-        const { nome, cpf, endereco, cep, email, telefone, idCurso} = req.body;
-        const {idAluno} = req.query;
-        console.log(req.body);
+    async update(idAluno, nome, cpf, endereco, cep, email, telefone, idCurso) {
+        
+    
         return new Promise((resolve, reject) => {
             con.query('UPDATE Alunos SET nome = ?, cpf = ?, endereco = ?, cep =? ,email = ?, telefone = ?, idCursos =? WHERE idAluno = ?',
                 [nome, cpf, endereco, cep, email, telefone, idCurso, idAluno], (err, result) => {

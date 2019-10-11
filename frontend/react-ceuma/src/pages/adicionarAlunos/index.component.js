@@ -4,15 +4,6 @@ import api from '../../services/api'
 
 export default class AdicionarAlunos extends Component {
 
-
-    /* const [nome, setNome] = useState('');
-    const [email, setEmail] = useState('');
-    const [telefone, setTelefone] = useState('');
-    const [cep, setCep] = useState('');
-    const [endereco, setEndereco] = useState('');
-    const [cpf, setCpf] = useState('');
-    const [cursos, setCursos] = useState(''); */
-
     constructor(props) {
         super(props);
 
@@ -74,19 +65,7 @@ export default class AdicionarAlunos extends Component {
 
     async onSubmit(event) {
         event.preventDefault();
-        //alert('A name was submitted: ' + this.state.nome);
-        /*   const data = new FormData(); 
-           console.log(cep);
-            data.append('nome', nome);
-            data.append('email', email);
-            data.append('telefone', telefone);
-            data.append('cep', );
-            data.append(this.state.endereco);
-            data.append(this.state.cpf);
-            data.append("1");
-     */
-        //const response = await api.get('/cursos').data;
-        //console.log(response);
+
         console.log(this.state);
         try {
             await api.post('/alunos', {
@@ -100,17 +79,19 @@ export default class AdicionarAlunos extends Component {
             });
 
             alert(`O usuário ${this.state.nome} foi adicionado com sucesso!`)
-           
+
         } catch (error) {
-            
+
         }
-         
+
     }
 
     render() {
 
         return (<>
+
             <form onSubmit={this.onSubmit}>
+                <h3>Adicionar Alunos</h3>
                 <div className="form-row">
                     <div className="form-group col-md-6">
                         <label htmlFor="inputName4">Nome</label>
@@ -189,14 +170,14 @@ export default class AdicionarAlunos extends Component {
                             <option value="3">Administração</option>
                         </select>
                     </div>
-                    
-                    </div>
-                    <button type="submit" style={{ padding: 10, }} className="btn btn-primary">ADICIONAR ALUNO</button>
 
-                    
+                </div>
+                <button type="submit" style={{ padding: 10, }} className="btn btn-primary">ADICIONAR ALUNO</button>
+
+
             </form>
         </>);
-    
-        }
+
     }
-    
+}
+
