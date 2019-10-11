@@ -1,5 +1,4 @@
 import React from 'react';
-import api from './services/api'
 import './App.css';
 import Routes from './routes'
 function App() {
@@ -40,7 +39,7 @@ function App() {
                     </div>
                   </li>
                   <li className="nav-item active">
-                    <a className="nav-link" href="/listarAlunos">LISTAR ALUNOS POR CURSO<span className="sr-only">(current)</span></a>
+                    <a className="nav-link" href="/escolherCurso">LISTAR ALUNOS POR CURSO<span className="sr-only">(current)</span></a>
                   </li>
                 </ul>
               </div>

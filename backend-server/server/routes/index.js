@@ -131,9 +131,11 @@ router.put('/alunos/:idAluno', async (req, res) => {
    
 });
 
-router.get('/cursos-alunos', async (req, res) => {
+router.get('/listar/:idCurso', async (req, res) => {
     try {
-        const result = await ListarController.show();
+        console.log(req.params);
+        const {idCurso} = req.params
+        const result = await ListarController.findOne(idCurso);
         //console.log(result)
         return res.json(result);
 

@@ -52,9 +52,9 @@ export default class CursosListar extends Component {
       <table className="table table-striped" style={{ paddingTop: 20 }}>
         <thead className="thead-light">
           <tr>
-            <th scope="col">Data</th>
             <th scope="col">Nome</th>
-            <th scope="col">CargaHoraria</th>
+            <th scope="col">Data do Registro</th>
+            <th scope="col">Carga Horária</th>
             <th scope="col">Editar</th>
             <th scope="col">Deletar</th>
           </tr>
@@ -63,7 +63,6 @@ export default class CursosListar extends Component {
           {this.cursoList()}
         </tbody>
       </table>
-      <button type="button" onClick="" className="btn">Exportar Excel</button>
     </div>
     )
   }

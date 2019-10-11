@@ -1,75 +1,66 @@
 import React, { Component } from 'react';
 import './style.css';
 import api from '../../services/api';
-import { Link } from 'react-router-dom';
 
-const Alunos = props => (
-  <tr>
-    <td>{props.aluno.nome}</td>
-    <td>{props.aluno.email}</td>
-    <td>{props.aluno.cpf}</td>
-    <td>{props.aluno.endereco}</td>
-    <td>{props.aluno.cep}</td>
-    <td>{props.aluno.telefone}</td>
+const Cursos = props => {
+  console.log(props)
+  return (<tr>
+
+    <td>{props.curso.nome}</td>
+    
+    <td>{props.curso.cargaHoraria}</td>
+
     <td>
-    <Link to={"/editarAluno/"+props.aluno.idAluno}>Edit</Link>
+      <a  href={"/listarAlunos/" + props.curso.idCurso}>Selecionar</a>
     </td>
-    <td>
-      <a className="action" href={"/deletarAluno/" + props.aluno.idAluno}>Deletar</a>
-    </td>
+    
   </tr>
-);
+  );
+}
 
-export default class AlunosListar extends Component {
+export default class CursosListar extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { alunos: [] };
+    this.state = { cursos: [] };
   }
 
   componentDidMount() {
-    api.get('/alunos')
+    api.get('/cursos')
       .then(response => {
-        console.log(response);
-        this.setState({ alunos: response.data });
+        console.log(response.data)
+        this.setState({ cursos: response.data });
       })
       .catch(function (error) {
         console.log(error);
       })
   }
-  alunoList() {
-    return this.state.alunos.map(function (alunoAtual, i) {
-      return <Alunos aluno={alunoAtual} key={i} />;
+
+  cursoList() {
+    return this.state.cursos.map(function (cursoAtual, i) {
+      return <Cursos curso={cursoAtual} key={i} />;
     });
   }
+
   render() {
-    return (
     
+    return (
     <div className="tb" >
-      <h3>Tabela de Alunos</h3>
+      <h3>Tabela de Cursos</h3>
       <table className="table table-striped" style={{ paddingTop: 20 }}>
         <thead className="thead-light">
           <tr>
             <th scope="col">Nome</th>
-            <th scope="col">Email</th>
-            <th scope="col">CPF</th>
-            <th scope="col">Endereço</th>
-            <th scope="col">CEP</th>
-            <th scope="col">Telefone</th>
-            <th scope="col">Editar</th>
-            <th scope="col">Deletar</th>
-
+            <th scope="col">CargaHoraria</th>
+            <th scope="col">Selecione um curso</th>
+            
           </tr>
         </thead>
         <tbody>
-          {this.alunoList()}
+          {this.cursoList()}
         </tbody>
       </table>
-     
     </div>
-
     )
   }
-
-
 } 

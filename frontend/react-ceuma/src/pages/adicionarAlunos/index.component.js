@@ -162,7 +162,7 @@ export default class AdicionarAlunos extends Component {
                 </div>
                 <div class="form-row align-items-center">
                     <div class="col-auto my-1">
-                        <label class="mr-sm-2" for="inlineFormCustomSelect">Preference</label>
+                        <label class="mr-sm-2" for="inlineFormCustomSelect">Selecione o Curso</label>
                         <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
                             <option selected>Choose...</option>
                             <option value="1">Medicina</option>
@@ -172,6 +172,7 @@ export default class AdicionarAlunos extends Component {
                     </div>
 
                 </div>
+                <br/>
                 <button type="submit" style={{ padding: 10, }} className="btn btn-primary">ADICIONAR ALUNO</button>
 
 

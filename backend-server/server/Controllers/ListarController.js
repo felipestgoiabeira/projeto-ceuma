@@ -5,7 +5,7 @@ module.exports = {
     // mostra os alunos de um dado curso
     async findOne(id) {
         return new Promise((resolve, reject) => {
-            con.query('Select Alunos.nome, Cursos.nome as curso from Alunos, Cursos where Alunos.idCursos = Cursos.idCurso and Cursos.idCurso =  ?', [id], (err, results) => {
+            con.query('Select Alunos.nome, Alunos.cpf, Alunos.email, Alunos.telefone, Alunos.endereco, Alunos.cep, Cursos.nome as curso from Alunos, Cursos where Alunos.idCursos = Cursos.idCurso and Cursos.idCurso =  ?', [id], (err, results) => {
                 if (err) {
                     return reject(err);
                 }

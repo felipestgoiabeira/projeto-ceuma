@@ -1,8 +1,7 @@
-import React, {useState, Component}from 'react';
-import './style.css';
+import React, { Component}from 'react';
 import api from '../../services/api'
 
-export default class AdicionarCursos extends Component {
+export default class EditarCursos extends Component {
     constructor(props){
 
         super(props);
@@ -76,9 +75,6 @@ export default class AdicionarCursos extends Component {
             </div>
             <button type="submit" className="btn btn-primary">Adicionar Curso</button>
         </form>
-
-
-
 
     </>);}
 

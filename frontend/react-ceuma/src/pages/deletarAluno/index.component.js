@@ -4,9 +4,6 @@ import api from '../../services/api'
 
 export default class AdicionarCursos extends Component {
     
-    constructor(props){
-        super(props);
-    }
     componentDidMount() {
         try {
             api.delete("alunos/" + this.props.match.params.id).then(response => {
