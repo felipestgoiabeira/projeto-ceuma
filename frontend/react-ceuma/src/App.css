@@ -38,9 +38,7 @@ body, input button{
   padding: 30px;
   align-items: center;
 }
-img{
-  width: 140,5;
-}
+
 .content button.btn{
   border : 0;
   border-radius: 2px;

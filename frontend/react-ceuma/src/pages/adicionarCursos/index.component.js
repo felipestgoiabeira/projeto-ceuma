@@ -39,10 +39,11 @@ export default class AdicionarCursos extends Component {
 
     render() {
         return (
-            
+
             <div className='exec'>
-                <h3>Adicionar Curso</h3>
+
                 <form onSubmit={this.onSubmit}>
+                    <h3>Adicionar Curso</h3>
                     <div className="form-row">
                         <div className="form-group col-md-6">
                             <label htmlFor="inputName4">Nome</label>
