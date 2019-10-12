@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+input, select, textarea{
+    
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+  }
+  /* Style the label to display next to the inputs */
+
+
+  
+  
+.columns {
+    column-width: 150px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    grid-auto-rows: 100px;
+    grid-gap: 0.2em;
+    align-items: center;
+    
+    padding: 0.5em;
+    box-decoration-break: clone;
+    border-radius: 2px;
+    counter-reset: nb;
+    
+  }
+  
+   
+p.error {
+  color:red
+}
+
+.form{
+  font-family: Arial;
+}
+input .input-group{
+  display: flex;
+  flex-direction: column;
+}

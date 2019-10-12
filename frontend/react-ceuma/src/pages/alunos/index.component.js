@@ -47,7 +47,7 @@ export default class AlunosListar extends Component {
     
     <div className="tb" >
       <h3>Tabela de Alunos</h3>
-      <table className="table table-striped" style={{ paddingTop: 20 }}>
+      <table className="table table-bordered" style={{ paddingTop: 20 }}>
         <thead className="thead-light">
           <tr>
             <th scope="col">Nome</th>
