@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './style.css';
 import api from '../../services/api'
+import {
+    Link
+  } from "react-router-dom";
 
 export default class EditarAlunos extends Component {
 
@@ -64,14 +67,16 @@ export default class EditarAlunos extends Component {
         api.get("/alunos/" + this.props.match.params.id).then(response => {
             console.log(response);
             this.setState({
-                nome: response.data.nome,
-                email: response.data.email,
-                cpf: response.data.cpf,
-                cep: response.data.cep,
-                endereco: response.data.endereco,
-                curso: response.data.curso
+                nome: response.data[0].nome,
+                email: response.data[0].email,
+                cpf: response.data[0].cpf,
+                cep: response.data[0].cep,
+                endereco: response.data[0].endereco,
+                curso: response.data[0].idCursos,
+                telefone: response.data[0].telefone,
 
             });
+            console.log(this.state);
         })
             .catch(function (error) {
                 console.log(error)
@@ -128,8 +133,8 @@ export default class EditarAlunos extends Component {
                 idCurso: this.state.curso,
             });
 
-            alert(`O usuário ${this.state.nome} foi atualizado com sucesso!`)
-
+            alert(`O usuário ${this.state.nome} foi atualizado com sucesso!`);
+            this.props.history.push('/alunos');
         } catch (error) {
 
         }
@@ -148,7 +153,7 @@ export default class EditarAlunos extends Component {
                         <input 
                             className="form-control"
                             id="inputName4"
-                            value={this.state.nome || ''}
+                            defaultValue={this.state.nome || ''}
                             onChange={this.onChangeNome} />
                     </div>
                     <div className="form-group col-md-6">
@@ -156,7 +161,7 @@ export default class EditarAlunos extends Component {
                         <input 
                             className="form-control"
                             id="inputCpf4"
-                            value={this.state.cpf || ''}
+                            defaultValue={this.state.cpf || ''}
                             onChange={this.onChangeCpf}
                         />
                     </div>
@@ -169,7 +174,7 @@ export default class EditarAlunos extends Component {
                         <input 
                             className="form-control"
                             id="inputEmail4"
-                            value={this.state.email || ''}
+                            defaultValue={this.state.email || ''}
                             onChange={this.onChangeEmail}
                         />
                     </div>
@@ -179,7 +184,7 @@ export default class EditarAlunos extends Component {
                             className="form-control"
                             id="inputName4"
 
-                            value={this.state.telefone || ''}
+                            defaultValue={this.state.telefone || ''}
                             onChange={this.onChangeTelefone}
                         />
                     </div>
@@ -193,7 +198,7 @@ export default class EditarAlunos extends Component {
                             className="form-control"
                             id="inputAddress"
 
-                            value={this.state.endereco || ''}
+                            defaultValue={this.state.endereco || ''}
                             onChange={this.onChangeEndereco} />
                     </div>
                     <div className="form-group col-md-6">
@@ -202,7 +207,7 @@ export default class EditarAlunos extends Component {
                             className="form-control"
                             id="inputCep4"
 
-                            value={this.state.cep || ''}
+                            defaultValue={this.state.cep || ''}
                             onChange={this.onChangeCep}
                         />
                     </div>
@@ -210,8 +215,7 @@ export default class EditarAlunos extends Component {
                 <div className="form-row align-items-center">
                     <div className="col-auto my-1">
                         <label className="mr-sm-2" htmlFor="inlineFormCustomSelect">Curso</label>
-                        <select className="custom-select mr-sm-2" defaltvalue={this.state.curso} onChange={this.onChangeCurso} id="inlineFormCustomSelect">
-                            <option value='' unselectable="true"></option>
+                        <select className="custom-select mr-sm-2" defaltvalue={`${this.state.curso}`} onChange={this.onChangeCurso} id="inlineFormCustomSelect">
                             <option value="1">Medicina</option>
                             <option value="2">Direito</option>
                             <option value="3">Administração</option>

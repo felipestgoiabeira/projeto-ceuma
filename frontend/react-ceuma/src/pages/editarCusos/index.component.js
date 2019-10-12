@@ -19,8 +19,8 @@ export default class EditarCursos extends Component {
         api.get("/cursos/" + this.props.match.params.id).then(response => {
             console.log(response);
             this.setState({
-                nome: response.data.nome,
-                cargaHoraria: response.data.cargaHoraria,
+                nome: response.data[0].nome,
+                cargaHoraria: response.data[0].cargaHoraria,
             });
         })
             .catch(function (error) {
@@ -37,14 +37,19 @@ export default class EditarCursos extends Component {
         event.preventDefault();
         
         try {
-            await api.post('/cursos', {
+            await api.put('/cursos/'+ this.props.match.params.id, {
                 nome: this.state.nome,
-                cargaHoraria: this.statecargaHoraria,});
-            alert(`O curso ${this.state.nome} foi atualizado com sucesso!`)
+                cargaHoraria: this.statecargaHoraria,
+            });
+            alert(`O curso ${this.state.nome} foi atualizado com sucesso!`);
+            this.props.history.push('/cursos');
             
         } catch (error) {
-            
+            throw error;
         }
+        
+
+        //this.props.history.push('/cursos');
     
     }
     
@@ -74,7 +79,7 @@ export default class EditarCursos extends Component {
                     />
                 </div>
             </div>
-            <button type="submit" className="btn btn-primary">Adicionar Curso</button>
+            <button type="submit" className="btn btn-primary">Alterar Curso</button>
         </form>
 
     </>);}
