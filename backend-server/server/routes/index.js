@@ -44,10 +44,11 @@ router.post('/cursos', async (req, res) => {
     }
 });
 
-router.put('/cursos', async (req, res) => {
+router.put('/cursos/:id', async (req, res) => {
     try {
-
-        const result = await CourseController.update(req);
+        const {idCurso} = req.params.id
+        const { nome, cargaHoraria } = req.body;
+        const result = await CourseController.update(idCurso, nome, cargaHoraria);
         return res.json(result);
     } catch (e) {
 

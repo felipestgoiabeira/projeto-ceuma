@@ -38,9 +38,8 @@ module.exports = {
         });
     },
 
-    async update(req) {
-        const { nome, cargaHoraria } = req.body;
-        const { idCurso } = req.query
+    async update(idCurso, nome, cargaHoraria) {
+
         return new Promise((resolve, reject) => {
             con.query('UPDATE Cursos SET nome = ? , cargaHoraria = ?  WHERE idCurso = ?', [nome, cargaHoraria, idCurso], (err, result) => {
                 if (err) {

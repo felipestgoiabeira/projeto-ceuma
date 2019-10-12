@@ -78,7 +78,9 @@ export default class AdicionarAlunos extends Component {
                 idCurso: this.state.curso,
             });
 
-            alert(`O usuário ${this.state.nome} foi adicionado com sucesso!`)
+            alert(`O usuário ${this.state.nome} foi adicionado com sucesso!`);
+            this.props.history.push('/alunos');
+
 
         } catch (error) {
 

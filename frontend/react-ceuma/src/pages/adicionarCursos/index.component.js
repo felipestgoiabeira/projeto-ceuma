@@ -26,9 +26,10 @@ export default class AdicionarCursos extends Component {
         try {
             await api.post('/cursos', {
                 nome: this.state.nome,
-                cargaHoraria: this.statecargaHoraria,
+                cargaHoraria: this.state.cargaHoraria,
             });
-            alert(`O curso ${this.state.nome} foi adicionado com sucesso!`)
+            alert(`O curso ${this.state.nome} foi adicionado com sucesso!`);
+            this.props.history.push('/cursos');
 
         } catch (error) {
 
