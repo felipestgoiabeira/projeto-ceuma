@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
 import Home from './pages/home/index.component';
-import AdicionarAlunos from './pages/adicionarAlunos/App';
+import AdicionarAlunos from './pages/adicionarAlunos/index.component';
 import AdicionarCursos from './pages/adicionarCursos/index.component';
 import Alunos from './pages/alunos/index.component';
 import Cursos from './pages/cursos/index.component'  ;

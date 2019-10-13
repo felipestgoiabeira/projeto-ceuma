@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
-import './style.css';
 import api from '../../services/api'
+
+
+const Cursos = props => {
+    console.log(props)
+    return (
+        <option value={toString(props.curso.idCurso)}> {props.curso.nome}</option>
+    );
+}
 
 export default class AdicionarAlunos extends Component {
 
@@ -24,10 +31,26 @@ export default class AdicionarAlunos extends Component {
             endereco: '',
             cep: '',
             curso: '1',
+            cursos: [],
 
         };
     }
+    componentDidMount() {
+        api.get('/cursos')
+            .then(response => {
+                console.log(response.data)
+                this.setState({ cursos: response.data });
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
 
+    cursoList() {
+        return this.state.cursos.map(function (cursoAtual, i) {
+            return <Cursos curso={cursoAtual} key={i} />;
+        });
+    }
     onChangeNome(event) {
         this.setState({
             nome: event.target.value,
@@ -162,19 +185,17 @@ export default class AdicionarAlunos extends Component {
                         />
                     </div>
                 </div>
-                <div class="form-row align-items-center">
-                    <div class="col-auto my-1">
-                        <label class="mr-sm-2" for="inlineFormCustomSelect">Selecione o Curso</label>
-                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                            <option selected>Choose...</option>
-                            <option value="1">Medicina</option>
-                            <option value="2">Direito</option>
-                            <option value="3">Administração</option>
+                <div className="form-row align-items-center">
+                    <div className="col-auto my-1">
+                        <label className="mr-sm-2" htmlFor="inlineFormCustomSelect">Selecione o Curso</label>
+                        <select className="custom-select mr-sm-2" defaultValue="0" id="inlineFormCustomSelect">
+                            <option value="0">Escolha..</option>
+                            {this.cursoList()};
                         </select>
                     </div>
 
                 </div>
-                <br/>
+                <br />
                 <button type="submit" style={{ padding: 10, }} className="btn btn-primary">ADICIONAR ALUNO</button>
 
 

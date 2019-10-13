@@ -14,8 +14,8 @@ function App() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav">
-            <nav class="navbar navbar-light bg-light">
-              <img className='logo' src={logo} width='45px' height='40px' class="navbar-brand mb-0 h1" alt='Ceuma'/>  
+            <nav className="navbar navbar-light bg-light">
+              <img src={logo} width='45px' height='40px' className="navbar-brand mb-0 h1" alt='Ceuma'/>  
             </nav>
             <li className="nav-item active menu-item">
               <a className="nav-link" href="/">HOME<span className="sr-only">(current)</span></a>
