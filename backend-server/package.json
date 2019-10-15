@@ -15,7 +15,9 @@
     "excel4node": "^1.7.2",
     "express": "^4.17.1",
     "mysql": "^2.17.1",
-    "node-excel-export": "^1.4.4"
+    "mysql2": "^1.7.0",
+    "node-excel-export": "^1.4.4",
+    "sequelize": "^5.19.6"
   },
   "devDependencies": {
     "nodemon": "^1.18.8"
