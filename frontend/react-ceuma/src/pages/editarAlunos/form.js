@@ -26,7 +26,7 @@ const App = ({
 }) => {
 
   function cursoList() {
-    const cursos = [{ nome: "Medicina", idCurso: 1 },{ nome: "Direito", idCurso: 2 }, {nome: "Administração", idCurso:3}];
+    const cursos = [{ nome: "Direito", idCurso: 1 }, { nome: "Medicina", idCurso: 2 }, {nome: "Administração", idCurso:3}];
     //const cursos = values.cursos;
     //console.log(cursos)
 
@@ -172,7 +172,7 @@ const FormikApp = withFormik({
     cpf: Yup.number().typeError("CPF aceita somente números").min(11, 'CPF incorreto').required('Insira o CPF')
 
   }),
-  mapPropsToValues({ nome, email, cpf, endereco, cep, telefone, cursos }) {
+  mapPropsToValues({id, nome, email, cpf, endereco, cep, telefone, cursos }) {
     return {
       nome: nome || '',
       email: email || '',
@@ -180,12 +180,13 @@ const FormikApp = withFormik({
       endereco: endereco || '',
       cep: cep || '',
       telefone: telefone || '',
-      cursos: cursos /* [{ nome: 'Direito', idCurso: 1 }, { nome: "Medicina", idCurso: 2 } */
+      cursos: cursos ,
+      id : id/* [{ nome: 'Direito', idCurso: 1 }, { nome: "Medicina", idCurso: 2 } */
     }
   },
   handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
      try {
-      api.post('./alunos',{
+      api.put('./alunos/' + values.id,{
         nome : values.nome,
         cpf : values.cpf,
         endereco : values.endereco,
@@ -198,16 +199,7 @@ const FormikApp = withFormik({
      } catch (error) {
        console.log(error)
      }
-    console.log({
-      nome : values.nome,
-      cpf : values.cpf,
-      endereco : values.endereco,
-      cep: values.cep,
-      email : values.email,
-      telefone : values.telefone,
-      idCurso: "2",
-
-    })
+    
   }
 })(App)
 

@@ -47,7 +47,7 @@ export default class CursosListar extends Component {
     return (
     <div className="tb" >
       <h3>Tabela de Cursos</h3>
-      <table className="table table-striped" style={{ paddingTop: 20 }}>
+      <table className="table table-bordered" style={{ paddingTop: 20 }}>
         <thead className="thead-light">
           <tr>
             <th scope="col">Nome</th>

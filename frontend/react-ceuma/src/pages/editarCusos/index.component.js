@@ -10,24 +10,21 @@ export default function EditarCursos() {
     useEffect(() => {
         async function getCurso(){
             const response = await api.get("/cursos/" +id)
-            setCurso(response.data)
-            console.log(response)}
+            setCurso(response.data[0])
+            }
        
        getCurso();
 
 
             
-    }, [id])
+    }, [])
 
 
 
 
     return (<>
-
-        <FormMake nome={curso.nome}
-            cargaHoraria={curso.cargaHoraria}
-
-        />
+        {console.log(curso)}
+        <FormMake nome={curso.nome} cargaHoraria={`${curso.cargaHoraria}`} id={`${id}`}/>
 
     </>);
 

@@ -4,7 +4,6 @@ import * as Yup from 'yup';
 import './index.css'
 import { Form, Grid, FormField } from 'semantic-ui-react';
 import api from '../../services/api';
-
 const App = ({
   values,
   handleChange,
@@ -21,7 +20,7 @@ const App = ({
 
     <Grid columns={2}>
       <Grid.Column>
-        <h3 style={{ marginLeft: "0.8em" }}>{'Adicionar novo curso'}</h3>
+        <h3 style={{ marginLeft: "0.8em" }}>{'Alterar curso'}</h3>
 
         <Form onSubmit={handleSubmit} >
           <Form.Group widths='equal'>
@@ -45,7 +44,7 @@ const App = ({
                 name="cargaHoraria"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.email}
+                value={values.cargaHoraria}
                 placeholder="Carga Horária do Curso"
               />
               {touched.email && errors.email && <p className='error'>{errors.email}</p>}
@@ -53,7 +52,7 @@ const App = ({
             </FormField>
           </Form.Group>
 
-          <button type='submit' className='ui primary basic button' >Adicionar Curso</button>
+          <button type='submit' className='ui primary basic button' >Alterar Curso</button>
 
 
         </Form>
@@ -76,20 +75,23 @@ const FormikApp = withFormik({
     cargaHoraria: Yup.number().typeError("Insira somente números").required('Insira a carga horária'),
 
   }),
-  mapPropsToValues({ nome, cargaHoraria }) {
+  mapPropsToValues({ nome, cargaHoraria, id }) {
     return {
       nome: nome || "" ,
-      cargaHoraria: cargaHoraria ,
+      cargaHoraria: cargaHoraria || '',
+      id : id
       /* [{ nome: 'Direito', idCurso: 1 }, { nome: "Medicina", idCurso: 2 } */
     }
   },
-  handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
-     api.post('./cursos',{
+  handleSubmit(values, { props, resetForm, setErrors, setSubmitting }) {
+     api.put('/cursos/' + values.id ,{
+      
       nome : values.nome,
       cargaHoraria: values.cargaHoraria
 
     }) 
-    console.log(values)
+    alert("Curso Alterado com Sucesso")
+    
   }
 })(App)
 
