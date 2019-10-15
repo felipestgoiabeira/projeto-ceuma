@@ -2,18 +2,16 @@ import React from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
 import Home from './pages/home/index.component';
-import AdicionarAlunos from './pages/adicionarAlunos/App';
-import AdicionarCursos from './pages/adicionarCursos/index.component';
+import AdicionarAlunos from './pages/adicionarAlunos/'
+import AdicionarCursos from './pages/adicionarCursos/';
 import Alunos from './pages/alunos/index.component';
 import Cursos from './pages/cursos/index.component'  ;
 import EditarAluno from './pages/editarAlunos/index.component';
 import DeletarAluno from './pages/deletarAluno/index.component';
-import DeletarCurso from './pages/deletarCurso/index.component'
-import EscolherCurso from './pages/listarAlunos/index.component'
-import EditarCurso from './pages/editarCusos/index.component'
-import ListarAlunos from './pages/listarAlunos/listar.component'
-
-
+import DeletarCurso from './pages/deletarCurso/index.component';
+import EscolherCurso from './pages/listarAlunos/index.component';
+import EditarCurso from './pages/editarCusos/index.component';
+import ListarAlunos from './pages/listarAlunos/listar.component';
 
 export default function Router(){
 
@@ -35,6 +33,8 @@ export default function Router(){
 
             <Route path='/escolherCurso' exact component={EscolherCurso}></Route>
             <Route path='/listarAlunos/:id' exact component={ListarAlunos}></Route>
+           
+           
 
         </Switch>
         

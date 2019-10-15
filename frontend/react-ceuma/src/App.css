@@ -22,13 +22,13 @@ form, body, input button{
   font-family: 'Roboto', Arial, Helvetica, sans-serif
 }
 
-.cont{
+.containerFrame{
   margin: 10px auto 0;
   max-width: 1200px;
   width: 100%;
  
 }
-.content{
+.contentFrame{
   margin: 30px;
   width: 100% ;
   background: #FFF;
@@ -59,3 +59,9 @@ form, body, input button{
   margin-left:0%;
   margin-top: 2%;
 }
+
+@media only screen and (min-width: 1200px){}
+.ui.menu {
+    width: 1127px;
+    margin-left: auto !important;
+    margin-right: auto !important;}

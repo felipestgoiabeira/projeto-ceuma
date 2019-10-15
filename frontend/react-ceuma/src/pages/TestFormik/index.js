@@ -16,30 +16,6 @@ const defaultFormShape = {
 
 export default class AlunoForm extends Component {
 
-    constructor(props) {
-        super(props);
-
-        this.onChangeNome = this.onChangeNome.bind(this);
-        this.onChangeEmail = this.onChangeEmail.bind(this);
-        this.onChangeCpf = this.onChangeCpf.bind(this);
-        this.onChangeTelefone = this.onChangeTelefone.bind(this);
-        this.onChangeEndereco = this.onChangeEndereco.bind(this);
-        this.onChangeCep = this.onChangeCep.bind(this);
-        this.onChangeCurso = this.onChangeCurso.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
-
-        this.state = {
-            nome: '',
-            email: '',
-            cpf: '',
-            telefone: '',
-            endereco: '',
-            cep: '',
-            curso: '1',
-            cursos: [],
-
-        };
-    }
   render() {
     
     const validationSchema = Yup.object().shape({
@@ -62,7 +38,7 @@ export default class AlunoForm extends Component {
     return (
       
       <Formik
-        initialValues={ defaultFormShape}
+        initialValues={ :defaultFormShape}
         enableReinitialize
         validationSchema={validationSchema}
 
@@ -75,8 +51,7 @@ export default class AlunoForm extends Component {
         }}
         
         render={({ touched, errors, values, handleChange, handleBlur, handleSubmit }) => (
-        <Grid centered columns={2}>
-        <Grid.Column>
+        <div className='ui grid'>
           <h1 style={{marginLeft:"0.5em"}}>{'Add New Contact'}</h1>
             
           <Form onSubmit={handleSubmit} loading={this.props.loading}>
@@ -92,6 +67,7 @@ export default class AlunoForm extends Component {
                   placeholder='First name'
                 />
                 {get(touched, 'name.first') && get(errors, 'name.first') && <Message negative size='mini'>{errors.name.first}</Message>}
+                <div className='four wide column'></div>
                 
               </FormField>   
               <FormField>
