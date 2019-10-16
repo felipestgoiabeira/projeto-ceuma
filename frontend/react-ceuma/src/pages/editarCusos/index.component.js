@@ -1,14 +1,22 @@
-import React, { Component}from 'react';
-import api from '../../services/api'
+import React, { useState, useEffect } from 'react';
+import api from '../../services/api';
+import { useParams } from "react-router";
+import FormMake from './form';
 
-export default class EditarCursos extends Component {
-    constructor(props){
+export default function EditarCursos() {
+    const [curso, setCurso] = useState([]);
+    const { id } = useParams();
 
-        super(props);
-        this.onChangeNome = this.onChangeNome.bind(this);
-        this.onChangeCargaHoraria = this.onChangeCargaHoraria.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+    useEffect(() => {
+        async function getCurso(){
+            const response = await api.get("/cursos/" +id)
+            setCurso(response.data[0])
+            }
+       
+       getCurso();
 
+
+<<<<<<< HEAD
         this.state = {
             nome : '',
             cargaHoraria: '',
@@ -81,7 +89,19 @@ export default class EditarCursos extends Component {
             </div>
             <button type="submit" className="btn btn-primary">Alterar Curso</button>
         </form>
+=======
+            
+    }, [])
 
-    </>);}
+
+
+
+    return (<>
+        {console.log(curso)}
+        <FormMake nome={curso.nome} cargaHoraria={`${curso.cargaHoraria}`} id={`${id}`}/>
+
+    </>);
+>>>>>>> authentication
+
 
 }
