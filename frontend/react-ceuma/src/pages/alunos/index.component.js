@@ -2,22 +2,26 @@ import React, { Component } from 'react';
 import './style.css';
 import api from '../../services/api';
 import { Link } from 'react-router-dom';
+import { EXCEL_ALUNOS } from '../../services/constants'
 
 const Alunos = props => (
-  <tr>
-    <td>{props.aluno.nome}</td>
-    <td>{props.aluno.email}</td>
-    <td>{props.aluno.cpf}</td>
-    <td>{props.aluno.endereco}</td>
-    <td>{props.aluno.cep}</td>
-    <td>{props.aluno.telefone}</td>
-    <td>
-    <Link to={"/editarAluno/"+props.aluno.idAluno}>Alterar</Link>
-    </td>
-    <td>
-      <a className="action" href={"/deletarAluno/" + props.aluno.idAluno}>Deletar</a>
-    </td>
-  </tr>
+  <>
+    <tr>
+      <td>{props.aluno.nome}</td>
+      <td>{props.aluno.email}</td>
+      <td>{props.aluno.cpf}</td>
+      <td>{props.aluno.endereco}</td>
+      <td>{props.aluno.cep}</td>
+      <td>{props.aluno.telefone}</td>
+      <td>
+        <Link to={"/editarAluno/" + props.aluno.idAluno}>Alterar</Link>
+      </td>
+      <td>
+        <a className="action" href={"/deletarAluno/" + props.aluno.idAluno}>Deletar</a>
+      </td>
+    </tr>
+
+  </>
 );
 
 export default class AlunosListar extends Component {
@@ -44,29 +48,32 @@ export default class AlunosListar extends Component {
   }
   render() {
     return (
-    
-    <div className="tb" >
-      <h3>Tabela de Alunos</h3>
-      <table className="table table-bordered" style={{ paddingTop: 20 }}>
-        <thead className="thead-light">
-          <tr>
-            <th scope="col">Nome</th>
-            <th scope="col">Email</th>
-            <th scope="col">CPF</th>
-            <th scope="col">Endereço</th>
-            <th scope="col">CEP</th>
-            <th scope="col">Telefone</th>
-            <th scope="col">Editar</th>
-            <th scope="col">Deletar</th>
 
-          </tr>
-        </thead>
-        <tbody>
-          {this.alunoList()}
-        </tbody>
-      </table>
-     
-    </div>
+      <div className="tb" >
+        <h3>Tabela de Alunos</h3>
+        <table className="table table-bordered" style={{ paddingTop: 20 }}>
+          <thead className="thead-light">
+            <tr>
+              <th scope="col">Nome</th>
+              <th scope="col">Email</th>
+              <th scope="col">CPF</th>
+              <th scope="col">Endereço</th>
+              <th scope="col">CEP</th>
+              <th scope="col">Telefone</th>
+              <th scope="col">Editar</th>
+              <th scope="col">Deletar</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            {this.alunoList()}
+          </tbody>
+        </table>
+        <form action={EXCEL_ALUNOS}>
+          <button className='ui green button' type="submit"  >Download Tabela Excel</button>
+        </form>
+      <br/>
+      </div>
 
     )
   }

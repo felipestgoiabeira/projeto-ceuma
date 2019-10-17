@@ -14,6 +14,7 @@ import EditarCurso from './pages/editarCusos/';
 import ListarAlunos from './pages/listarAlunos/listar.component';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Excel from './pages/Excel'
 import {isAuthenticated} from './services/auth';
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
@@ -48,6 +49,7 @@ export default function Router(){
             <PrivateRoute path='/editarCurso/:id' exact component={EditarCurso}></PrivateRoute>
 
             <PrivateRoute path='/escolherCurso' exact component={EscolherCurso}></PrivateRoute>
+            <PrivateRoute path='/alunos/excel' exact component={Excel}></PrivateRoute>
             <PrivateRoute path='/listarAlunos/:id' exact component={ListarAlunos}></PrivateRoute>
             <Route path='/login' exact component={Login}></Route>
             <Route path='/register' exact component={Register}></Route>

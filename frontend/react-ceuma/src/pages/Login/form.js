@@ -100,11 +100,14 @@ const FormikApp = withFormik({
                     const token = response.data.token.split(' ')[1];
                     console.log(token)
                     login(token)
-                    isAuthenticated()
+                    if( isAuthenticated() ){
+                        props.history.push('/');
+                    }
+                    
                 };
                 ;
             });
-            props.history.push('/')
+            
         } catch (error) {
             console.log(error)
         }
