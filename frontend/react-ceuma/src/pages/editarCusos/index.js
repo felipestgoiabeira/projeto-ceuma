@@ -10,14 +10,14 @@ export default function EditarCursos() {
     useEffect(() => {
         async function getCurso(){
             const response = await api.get("/cursos/" +id)
-            setCurso(response.data[0])
+            setCurso(response.data)
             }
        
        getCurso();
 
 
             
-    }, [])
+    }, [id])
 
 
 

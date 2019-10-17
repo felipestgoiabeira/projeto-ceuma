@@ -1,14 +1,13 @@
 import React from 'react';
 import { withFormik } from 'formik';
 import * as Yup from 'yup';
-import Redirect from '../../components/redirect'
 // import './index.css'
 import { Form, Grid, FormField } from 'semantic-ui-react';
 import api from '../../services/api';
-import { login } from '../../services/auth';
-import {isAuthenticated} from '../../services/auth';
+import { login,isAuthenticated } from '../../services/auth';
+import Redirect from '../../components/redirect';
 
-
+var sucess = false
 const App = ({
     values,
     handleChange,
@@ -57,6 +56,7 @@ const App = ({
 
                         <button type='submit' className='ui primary basic button' >Login</button>
 
+
                     </Form>
                 </Grid.Column>
             </Grid>
@@ -101,7 +101,7 @@ const FormikApp = withFormik({
                     console.log(token)
                     login(token)
                     if( isAuthenticated() ){
-                        props.history.push('/');
+                        props.history.push("/welcome")
                     }
                     
                 };

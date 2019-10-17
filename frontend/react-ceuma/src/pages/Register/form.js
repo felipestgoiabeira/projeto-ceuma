@@ -1,7 +1,6 @@
 import React from 'react';
 import { withFormik } from 'formik';
 import * as Yup from 'yup';
-import Redirect from '../../components/redirect'
 // import './index.css'
 import { Form, Grid, FormField } from 'semantic-ui-react';
 import api from '../../services/api';

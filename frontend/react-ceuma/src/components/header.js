@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import logo from '../assets/marca2.png';
-import { isAuthenticated, getItem } from '../services/auth';
+import { isAuthenticated } from '../services/auth';
 
 // menus de cursos e alunos
 const Menus = () => (
@@ -60,7 +60,7 @@ const Mount = (props) => (
         </div>
 
         <a className='item' href="/" > Home </a>
-        {console.log("hasauth",props.auth)}
+      
         {props.auth ?
             <>
                 <Menus />
@@ -84,10 +84,9 @@ export default function Menu() {
     const [hasAuth, setHasAuth] = useState([]);
   
     useEffect(() => {
-        console.log("component")
-        setHasAuth(isAuthenticated());
-        console.log(hasAuth, isAuthenticated());
-    }, [hasAuth, isAuthenticated()])
+        const auth = isAuthenticated()
+        setHasAuth(auth);
+    }, [hasAuth])
 
 
 

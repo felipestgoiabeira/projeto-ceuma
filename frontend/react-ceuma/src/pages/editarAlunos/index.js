@@ -10,14 +10,13 @@ export default function EditarCursos() {
     useEffect(() => {
         async function getCurso(){
             const response = await api.get("/alunos/" +id)
-            setAluno(response.data[0])
+            setAluno(response.data)
             }
        
        getCurso();
             
-    }, [])
+    }, [aluno, id])
     return (<>
-        {console.log(aluno)}
         <FormMake nome={aluno.nome} 
             email={aluno.email}
             cpf={aluno.cpf}

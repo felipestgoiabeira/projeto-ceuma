@@ -144,7 +144,7 @@ const App = ({
           {touched.curso && errors.curso && <p className='error'>{errors.curso}</p>}
 
 
-          <button type='submit' className='ui primary basic button' >Adicionar Aluno</button>
+          <button type='submit' className='ui primary basic button' >Alterar Aluno</button>
 
 
         </Form>
@@ -186,14 +186,14 @@ const FormikApp = withFormik({
   },
   handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
      try {
-      api.put('./alunos/' + values.id,{
+      api.put('/alunos/' + values.id,{
         nome : values.nome,
         cpf : values.cpf,
         endereco : values.endereco,
         cep: values.cep,
         email : values.email,
         telefone : values.telefone,
-        idCurso: values.cursos,
+        curso_id: values.cursos,
   
       }) 
 

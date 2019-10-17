@@ -13,8 +13,6 @@ html, body, #root {
 }
 
 body{
-  background: #000 url('./assets/homebg.jpg') no-repeat;
-  background-size: cover;
   -webkit-font-smoothing: antialisied !important ;
 }
 

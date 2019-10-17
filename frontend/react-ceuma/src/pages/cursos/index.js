@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
 import './style.css';
 import api from '../../services/api';
+import { EXCEL_CURSOS } from '../../services/constants'
+
 
 const Cursos = props => {
   console.log(props)
   return (<tr>
 
     <td>{props.curso.nome}</td>
-    
+    <td>{props.curso.dataRegistro}</td>
     <td>{props.curso.cargaHoraria}</td>
 
     <td>
-      <a  href={"/listarAlunos/" + props.curso.idCurso}>Selecionar</a>
+      <a  href={"/editarCurso/" + props.curso.id}>Editar</a>
     </td>
-    
+    <td>
+      <a className="action" href={"/deletarCurso/" + props.curso.id}>Deletar</a>
+    </td>
   </tr>
   );
 }
@@ -51,15 +55,20 @@ export default class CursosListar extends Component {
         <thead className="thead-light">
           <tr>
             <th scope="col">Nome</th>
-            <th scope="col">CargaHoraria</th>
-            <th scope="col">Selecione um curso</th>
-            
+            <th scope="col">Data do Registro</th>
+            <th scope="col">Carga Horária</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Deletar</th>
           </tr>
         </thead>
         <tbody>
           {this.cursoList()}
         </tbody>
       </table>
+      <form action={EXCEL_CURSOS}>
+          <button className='ui green button' type="submit"  >Download Tabela Excel</button>
+        </form>
+        <br/>
     </div>
     )
   }

@@ -1,34 +1,25 @@
 import React from 'react';
 import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
 
-import Home from './pages/home/index.component';
+import Home from './pages/home/';
 import AdicionarAlunos from './pages/adicionarAlunos/'
 import AdicionarCursos from './pages/adicionarCursos/';
-import Alunos from './pages/alunos/index.component';
-import Cursos from './pages/cursos/index.component'  ;
+import Alunos from './pages/alunos/';
+import Cursos from './pages/cursos/'  ;
 import EditarAluno from './pages/editarAlunos/';
-import DeletarAluno from './pages/deletarAluno/index.component';
-import DeletarCurso from './pages/deletarCurso/index.component';
-import EscolherCurso from './pages/listarAlunos/index.component';
+import DeletarAluno from './pages/deletarAluno/';
+import DeletarCurso from './pages/deletarCurso/';
+import EscolherCurso from './pages/listarAlunos/';
 import EditarCurso from './pages/editarCusos/';
-import ListarAlunos from './pages/listarAlunos/listar.component';
+import ListarAlunos from './pages/listarAlunos/';
 import Login from './pages/Login';
+import Logout from './pages/Logout'
 import Register from './pages/Register';
-import Excel from './pages/Excel'
-import {isAuthenticated} from './services/auth';
-const PrivateRoute = ({ component: Component, ...rest }) => (
-    <Route
-      {...rest}
-      render={props =>
-        isAuthenticated() ? (
-          <Component {...props} />
-        ) : (
-          <Redirect to={{ pathname: "/", state: { from: props.location } }} />
-        )
-      }
-    />
-  );
-  
+import Welcome from "./pages/Welcome";
+import PrivateRoute from "./components/PrivateRoute";
+
+
+
 
 export default function Router(){
 
@@ -49,9 +40,12 @@ export default function Router(){
             <PrivateRoute path='/editarCurso/:id' exact component={EditarCurso}></PrivateRoute>
 
             <PrivateRoute path='/escolherCurso' exact component={EscolherCurso}></PrivateRoute>
-            <PrivateRoute path='/alunos/excel' exact component={Excel}></PrivateRoute>
             <PrivateRoute path='/listarAlunos/:id' exact component={ListarAlunos}></PrivateRoute>
+            <PrivateRoute path='/welcome' exact component={Welcome}></PrivateRoute>
+
+
             <Route path='/login' exact component={Login}></Route>
+            <Route path='/logout' exact component={Logout}></Route>
             <Route path='/register' exact component={Register}></Route>
            
            

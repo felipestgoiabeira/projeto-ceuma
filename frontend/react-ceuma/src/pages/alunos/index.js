@@ -14,10 +14,10 @@ const Alunos = props => (
       <td>{props.aluno.cep}</td>
       <td>{props.aluno.telefone}</td>
       <td>
-        <Link to={"/editarAluno/" + props.aluno.idAluno}>Alterar</Link>
+        <Link to={"/editarAluno/" + props.aluno.id}>Alterar</Link>
       </td>
       <td>
-        <a className="action" href={"/deletarAluno/" + props.aluno.idAluno}>Deletar</a>
+        <a className="action" href={"/deletarAluno/" + props.aluno.id}>Deletar</a>
       </td>
     </tr>
 

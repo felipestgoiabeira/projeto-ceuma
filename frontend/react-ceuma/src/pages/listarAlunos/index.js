@@ -7,15 +7,13 @@ const Cursos = props => {
   return (<tr>
 
     <td>{props.curso.nome}</td>
-    <td>{props.curso.dataRegistro}</td>
+    
     <td>{props.curso.cargaHoraria}</td>
 
     <td>
-      <a  href={"/editarCurso/" + props.curso.idCurso}>Editar</a>
+      <a  href={"/listarAlunos/" + props.curso.id}>Selecionar</a>
     </td>
-    <td>
-      <a className="action" href={"/deletarCurso/" + props.curso.idCurso}>Deletar</a>
-    </td>
+    
   </tr>
   );
 }
@@ -53,10 +51,9 @@ export default class CursosListar extends Component {
         <thead className="thead-light">
           <tr>
             <th scope="col">Nome</th>
-            <th scope="col">Data do Registro</th>
-            <th scope="col">Carga Horária</th>
-            <th scope="col">Editar</th>
-            <th scope="col">Deletar</th>
+            <th scope="col">CargaHoraria</th>
+            <th scope="col">Selecione um curso</th>
+            
           </tr>
         </thead>
         <tbody>
