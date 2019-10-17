@@ -1,5 +1,7 @@
 require("dotenv").config();
-
+var fs = require('fs')
+var path = require('path')
+const logger = require('morgan');
 const express = require('express');
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser')
@@ -9,12 +11,20 @@ const passport = require("passport");
 const cursos = require('./routes/cursos');
 const users = require("./routes/users");
 const alunos = require("./routes/alunos");
+const excel = require("./routes/excel");
+
 
 const cors = require('cors')
 const models = require('./app/models')
 
 
 const app = express();
+app.use(logger('common', {
+    stream: fs.createWriteStream('./access.log', {flags: 'a'})
+}));
+
+app.use(logger('dev'));
+
 
 app.use(cors());
 
@@ -40,6 +50,13 @@ app.use('/', cursos);
 
 // endpoints para alunos
 app.use('/', alunos)
+
+app.use('/', excel)
+
+
+
+
+
 
 // PORT from .env file
 const PORT = process.env.PORT ;

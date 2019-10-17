@@ -26,10 +26,11 @@ module.exports = {
 
     },
 
-    async update() {
+    async update(req,res) {
         try {
 
             const aluno = await Aluno.update(req.body, { where: { id: req.params.id } });
+            console.log(aluno)
             return res.send(aluno);
 
         } catch (error) {
@@ -56,7 +57,7 @@ module.exports = {
 
     async destroy(req, res) {
         try {
-
+            console.log(req)
             const deleted = await Aluno.destroy({
                 where: { id: req.params.id }
             });

@@ -10,8 +10,8 @@
     [x]Remover alunos;
     [x]Alterar alunos;
     [x]Listar os cursos e os alunos que fazem parte deste curso;
-    []O sistema deve exportar a lista de cursos e alunos para planilha excel;
-    []É desejável que o sistema também seja capaz de prevê erros de usuários no ato do cadastro das informações;
-    []É desejável que o sistema possa imprimir os dados dos cursos;
-    []É desejável que o sistema contenha um controle de segurança do acesso ao sistema;
-    []É desejável que o sistema guarde log de acesso em arquivo txt;
+    [x]O sistema deve exportar a lista de cursos e alunos para planilha excel;
+    [x]É desejável que o sistema também seja capaz de prevê erros de usuários no ato do cadastro das informações;
+    [x]É desejável que o sistema possa imprimir os dados dos cursos;
+    [x]É desejável que o sistema contenha um controle de segurança do acesso ao sistema;
+    [x]É desejável que o sistema guarde log de acesso em arquivo txt;

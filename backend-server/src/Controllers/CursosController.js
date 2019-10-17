@@ -75,6 +75,7 @@ module.exports = {
         try {
 
             const curso = await Curso.findByPk(req.params.id,{include:[models.alunos]});
+            console.log(curso)
             return res.send (curso);
 
         } catch (error) {

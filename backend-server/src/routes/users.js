@@ -3,6 +3,9 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require('../app/passport/keys');
+const  auth = require ('./auth')
+
+
 // Load input validation
 const validateRegisterInput = require('../app/passport/validation/resgister');
 const validateLoginInput = require("../app/passport/validation/login");
@@ -19,12 +22,16 @@ router.post("/register", (req, res) => {
     }
   User.findOne({ email: req.body.email }).then(user => {
       if (user) {
+
         return res.status(400).json({ email: "Email already exists" });
+
       } else {
+
         const newUser = new User({
           name: req.body.name,
           email: req.body.email,
           password: req.body.password
+
         });
   // Hash password before saving in database
         bcrypt.genSalt(10, (err, salt) => {
@@ -70,7 +77,7 @@ router.post("/register", (req, res) => {
             payload,
             keys.secretOrKey,
             {
-              expiresIn: 31556926 // 1 year in seconds
+              expiresIn: 30*30 // 30 min in seconds
             },
             (err, token) => {
             res.cookie('user-token', token)
@@ -88,6 +95,18 @@ router.post("/register", (req, res) => {
       });
     });
   });
+router.get('/current', auth.required, (req, res, next) => {
 
+  const { payload: { id } } = req;
+  User.findByPk(id).then( (user) => {
+      if(!user) {
+        
+        return res.sendStatus(400);
+      }
+
+      return res.json({ user: user });
+    });
+  }
+);
 
   module.exports = router;

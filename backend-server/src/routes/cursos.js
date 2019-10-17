@@ -15,6 +15,8 @@ router.get('/cursos', cursosController.show);
 
 router.put('/cursos/:id', cursosController.update);
 
+router.get('/listarAlunos/:id', cursosController.showAlunos);
+
 router.delete('/cursos/:id', cursosController.destroy);
 
 
