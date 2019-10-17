@@ -196,6 +196,9 @@ const FormikApp = withFormik({
         idCurso: values.cursos,
   
       }) 
+
+     alert("Aluno alterado com Sucesso");
+
      } catch (error) {
        console.log(error)
      }

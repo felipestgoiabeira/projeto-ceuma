@@ -1,22 +1,33 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
 
 import Home from './pages/home/index.component';
-<<<<<<< HEAD
-import AdicionarAlunos from './pages/adicionarAlunos/index.component';
-import AdicionarCursos from './pages/adicionarCursos/index.component';
-=======
 import AdicionarAlunos from './pages/adicionarAlunos/'
 import AdicionarCursos from './pages/adicionarCursos/';
->>>>>>> authentication
 import Alunos from './pages/alunos/index.component';
 import Cursos from './pages/cursos/index.component'  ;
-import EditarAluno from './pages/editarAlunos/index.component';
+import EditarAluno from './pages/editarAlunos/';
 import DeletarAluno from './pages/deletarAluno/index.component';
 import DeletarCurso from './pages/deletarCurso/index.component';
 import EscolherCurso from './pages/listarAlunos/index.component';
-import EditarCurso from './pages/editarCusos/index.component';
+import EditarCurso from './pages/editarCusos/';
 import ListarAlunos from './pages/listarAlunos/listar.component';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import {isAuthenticated} from './services/auth';
+const PrivateRoute = ({ component: Component, ...rest }) => (
+    <Route
+      {...rest}
+      render={props =>
+        isAuthenticated() ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+        )
+      }
+    />
+  );
+  
 
 export default function Router(){
 
@@ -26,18 +37,20 @@ export default function Router(){
         <Switch>
 
             <Route path='/' exact component={Home}></Route>
-            <Route path='/adicionarAlunos' exact component={AdicionarAlunos}></Route>
-            <Route path='/alunos' exact component={Alunos}></Route>
-            <Route path='/deletarAluno/:id' exact component={DeletarAluno}></Route>
-            <Route path='/editarAluno/:id' exact component={EditarAluno}></Route>
+            <PrivateRoute path='/adicionarAlunos' exact component={AdicionarAlunos}></PrivateRoute>
+            <PrivateRoute path='/alunos' exact component={Alunos}></PrivateRoute>
+            <PrivateRoute path='/deletarAluno/:id' exact component={DeletarAluno}></PrivateRoute>
+            <PrivateRoute path='/editarAluno/:id' exact component={EditarAluno}></PrivateRoute>
 
-            <Route path='/adicionarCursos' exact component={AdicionarCursos}></Route>
-            <Route path='/cursos' exact component={Cursos}></Route>
-            <Route path='/deletarCurso/:id' exact component={DeletarCurso}></Route>
-            <Route path='/editarCurso/:id' exact component={EditarCurso}></Route>
+            <PrivateRoute path='/adicionarCursos' exact component={AdicionarCursos}></PrivateRoute>
+            <PrivateRoute path='/cursos' exact component={Cursos}></PrivateRoute>
+            <PrivateRoute path='/deletarCurso/:id' exact component={DeletarCurso}></PrivateRoute>
+            <PrivateRoute path='/editarCurso/:id' exact component={EditarCurso}></PrivateRoute>
 
-            <Route path='/escolherCurso' exact component={EscolherCurso}></Route>
-            <Route path='/listarAlunos/:id' exact component={ListarAlunos}></Route>
+            <PrivateRoute path='/escolherCurso' exact component={EscolherCurso}></PrivateRoute>
+            <PrivateRoute path='/listarAlunos/:id' exact component={ListarAlunos}></PrivateRoute>
+            <Route path='/login' exact component={Login}></Route>
+            <Route path='/register' exact component={Register}></Route>
            
            
 

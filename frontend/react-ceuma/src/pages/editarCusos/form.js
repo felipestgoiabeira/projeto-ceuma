@@ -90,7 +90,7 @@ const FormikApp = withFormik({
       cargaHoraria: values.cargaHoraria
 
     }) 
-    alert("Curso Alterado com Sucesso")
+    alert("Curso alterado com Sucesso")
     
   }
 })(App)

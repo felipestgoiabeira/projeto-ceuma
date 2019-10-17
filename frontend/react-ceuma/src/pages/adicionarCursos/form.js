@@ -65,7 +65,8 @@ const App = ({
 
 
 
-  )}
+  )
+}
 
 
 const FormikApp = withFormik({
@@ -84,12 +85,15 @@ const FormikApp = withFormik({
     }
   },
   handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
-     api.post('./cursos',{
-      nome : values.nome,
-      cargaHoraria: values.cargaHoraria
+    api.post('./cursos', {
 
-    }) 
-    console.log(values)
+      nome: values.nome,
+      cargaHoraria: values.cargaHoraria
+      
+    })
+    // console.log(values)
+    alert("Curso adicionado com Sucesso");
+
   }
 })(App)
 

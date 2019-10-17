@@ -5,11 +5,12 @@ import './index.css'
 import { Form, Grid, FormField } from 'semantic-ui-react';
 import api from '../../services/api';
 
+var submited = false;
 
 const Cursos = props => {
   //console.log(props)
   return (
-    <option value={`${props.curso.idCurso}`}> {props.curso.nome}</option>
+    <option value={`${props.curso.id}`}> {props.curso.nome}</option>
   );
 }
 
@@ -26,13 +27,27 @@ const App = ({
 }) => {
 
   function cursoList() {
-    const cursos = [{ nome: "Medicina", idCurso: 1 },{ nome: "Direito", idCurso: 2 }, {nome: "Administração", idCurso:3}];
+    // const cursos = [{ nome: "Medicina", idCurso: 1 },{ nome: "Direito", idCurso: 2 }, {nome: "Administração", idCurso:3}];
     //const cursos = values.cursos;
-    //console.log(cursos)
 
-    return cursos.map(function (cursoAtual, i) {
-      return <Cursos curso={cursoAtual} key={i} />;
-    });
+    if (values.listCursos.length > 1) {
+      const cursos = [...values.listCursos];
+      console.log(cursos === values.cursos)
+      console.log(cursos)
+      /*  for (var i = 0; i < values.cursos.length; i++) {
+         cursos.push(values.cursos[i])
+         console.log(cursos);
+       } */
+      return [...values.listCursos].map(function (cursoAtual, i) {
+        return <Cursos curso={cursoAtual} key={i} />;
+      });
+    }
+    /* api.get("/cursos").then(response =>{
+      cursos = response;
+    }); */
+
+
+
   }
 
   return (
@@ -43,7 +58,7 @@ const App = ({
 
         <Form onSubmit={handleSubmit} >
           <Form.Group widths='equal'>
-            <FormField>
+            <FormField disabled={submited} className={touched.nome && errors.nome && 'field error'}>
               <label>Nome *</label>
               <input
                 type="text"
@@ -56,7 +71,7 @@ const App = ({
               {touched.nome && errors.nome && <p className='error'>{errors.nome}</p>}
             </FormField>
 
-            <FormField>
+            <FormField disabled={submited} className={touched.email && errors.email && 'field error'}>
               <label>Email</label>
               <input
                 type="email"
@@ -72,7 +87,7 @@ const App = ({
           </Form.Group>
 
           <Form.Group widths='equal'>
-            <FormField>
+            <FormField disabled={submited} className={touched.cpf && errors.cpf && 'field error'}>
               <label>CPF</label>
               <input
                 type="text"
@@ -85,7 +100,7 @@ const App = ({
               {touched.cpf && errors.cpf && <p className='error'>{errors.cpf}</p>}
             </FormField>
 
-            <FormField>
+            <FormField disabled={submited} className={touched.endereco && errors.endereco && 'field error'}>
               <label>Endereço</label>
               <input
                 type="text"
@@ -100,7 +115,7 @@ const App = ({
             </FormField>
           </Form.Group>
           <Form.Group widths='equal'>
-            <FormField>
+            <FormField disabled={submited} className={touched.cep && errors.cep && 'field error'}> 
               <label>CEP</label>
               <input
                 type="text"
@@ -114,7 +129,7 @@ const App = ({
 
             </FormField>
 
-            <FormField>
+            <FormField disabled={submited} className={touched.telefone && errors.telefone && 'field error'}>
               <label>Telefone</label>
               <input
                 type="text"
@@ -132,8 +147,8 @@ const App = ({
           <FormField>
             <label>Curso</label>
 
-            <select name='cursos' onChange={handleChange} >
-              <option >Escolha</option>
+            <select disabled={submited} name='curso' onBlur={handleBlur} defaultValue={values.cursos} onChange={handleChange} >
+              <option value = '0'> Selecione um curso</option>
               {cursoList()}
 
             </select>
@@ -141,13 +156,17 @@ const App = ({
 
           </FormField>
 
-          {touched.curso && errors.curso && <p className='error'>{errors.curso}</p>}
+          {touched.curso && errors.curso ?  <p className='error'>{errors.curso}</p>: ''}
 
 
-          <button type='submit' className='ui primary basic button' >Adicionar Aluno</button>
+          <button type='submit' className='ui primary basic button' disabled={submited} >Adicionar Aluno</button>
 
-
+          
         </Form>
+        {submited ? (<div class="ui success message">
+            <div class="header">Aluno Adicionado com Sucesso</div>
+             <a href="/alunos" > Ver alunos </a> 
+          </div>) : ""}
 
       </Grid.Column>
 
@@ -167,12 +186,12 @@ const FormikApp = withFormik({
     email: Yup.string().email("Insira um email válido").required("Insira o email"),
     endereco: Yup.string().required('Insira o Endereço'),
     cep: Yup.number().typeError("CEP aceita somente números").min(8, 'CPF incorreto').required('Insira o CEP'),
-    curso: Yup.array().of(Yup.string().oneOf(['Direito', 'Medicine', 'Administração'])).typeError('Escolha um Curso'),
+    curso: Yup.string().required('Escolha um Curso'),
     telefone: Yup.number().typeError("Telefone aceita somente números").required('Insira o Telefone'),
     cpf: Yup.number().typeError("CPF aceita somente números").min(11, 'CPF incorreto').required('Insira o CPF')
 
   }),
-  mapPropsToValues({ nome, email, cpf, endereco, cep, telefone, cursos }) {
+  mapPropsToValues({ nome, email, cpf, endereco, cep, telefone, curso, listCursos }) {
     return {
       nome: nome || '',
       email: email || '',
@@ -180,34 +199,44 @@ const FormikApp = withFormik({
       endereco: endereco || '',
       cep: cep || '',
       telefone: telefone || '',
-      cursos: cursos /* [{ nome: 'Direito', idCurso: 1 }, { nome: "Medicina", idCurso: 2 } */
+      listCursos: listCursos,
+      curso: curso || '' /* [{ nome: 'Direito', idCurso: 1 }, { nome: "Medicina", idCurso: 2 } */
     }
   },
   handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
-     try {
-      api.post('./alunos',{
-        nome : values.nome,
-        cpf : values.cpf,
-        endereco : values.endereco,
+        
+    setSubmitting(false);
+    
+    try {
+      
+      api.post('./alunos', {
+        nome: values.nome,
+        cpf: values.cpf,
+        endereco: values.endereco,
         cep: values.cep,
-        email : values.email,
-        telefone : values.telefone,
-        idCurso: values.cursos,
-  
-      }) 
-     } catch (error) {
-       console.log(error)
-     }
-    console.log({
-      nome : values.nome,
-      cpf : values.cpf,
-      endereco : values.endereco,
-      cep: values.cep,
-      email : values.email,
-      telefone : values.telefone,
-      idCurso: "2",
+        email: values.email,
+        telefone: values.telefone,
+        curso_id: values.cursos,
 
-    })
+      });
+      submited = true;
+      resetForm();
+
+
+      //alert("Aluno adicionado com Sucesso");
+    } catch (error) {
+      console.log(error)
+    }
+    /*  console.log({
+       nome: values.nome,
+       cpf: values.cpf,
+       endereco: values.endereco,
+       cep: values.cep,
+       email: values.email,
+       telefone: values.telefone,
+       id: values.cursos ,
+ 
+     }) */
   }
 })(App)
 

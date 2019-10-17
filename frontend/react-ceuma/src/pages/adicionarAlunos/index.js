@@ -18,7 +18,7 @@ export default function AdicionarAluno(history) {
     }, []);
 
     return (
-        <FormMake cursos = {curso}/>
+        <FormMake listCursos = {curso}/>
     );
 
 }
