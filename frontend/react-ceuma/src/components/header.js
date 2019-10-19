@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+
 import logo from '../assets/marca2.png';
-import { isAuthenticated } from '../services/auth';
+import { withRouter } from "react-router";
 
 // menus de cursos e alunos
-const Menus = () => (
+export const Menus = () => (
     <>
         <div className="ui simple dropdown item">
 
@@ -29,19 +30,6 @@ const Menus = () => (
         </div>
     </>);
 
-
-
-//quando o usuário não está logado
-const Login = () => (
-    <div className="right menu">
-        <a href='/login' className="ui item">
-            Login
-            </a>
-        <a href='/register' className="ui item">
-            Register
-            </a>
-    </div>);
-
 //para usuário logado
 const Logout = () =>
     (<div className="right menu">
@@ -60,42 +48,29 @@ const Mount = (props) => (
         </div>
 
         <a className='item' href="/" > Home </a>
-      
-        {props.auth ?
+
             <>
                 <Menus />
                 <Logout />
             </>
-            :
-            <>
-                <Menus />
-                <Login />
-            </>
-        }
 
 
     </div>
 )
 
-
-
-
-export default function Menu() {
-    const [hasAuth, setHasAuth] = useState([]);
+function Menu({location}) {
   
-    useEffect(() => {
-        const auth = isAuthenticated()
-        setHasAuth(auth);
-    }, [hasAuth])
+    const path = location.pathname;
 
+    if (path !== "/login" && path !== '/register') {
 
+        return (
+            <Mount />
 
-
-    return (
-
-        <Mount auth={hasAuth}/>
-
-    );
-
+        );
+    }
+    return '';
 
 }
+
+export default withRouter(Menu)

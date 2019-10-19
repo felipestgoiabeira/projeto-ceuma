@@ -5,20 +5,21 @@ import FormMake from './form';
 
 
 export default function AdicionarAluno(history) {
-    const [curso, setCurso] = useState([]);
+    const [cursos, setCursos] = useState([]);
 
     useEffect(() =>{
-        async function getCurso(){
+        async function getCursos(){
             const response = await api.get("/cursos")
-            setCurso(response.data)
-            console.log(response)}
+            setCursos(response.data)
+            console.log(response)
+        }
        
-       getCurso();
+       getCursos();
 
     }, []);
 
     return (
-        <FormMake listCursos = {curso}/>
+        <FormMake listCursos = {cursos}/>
     );
 
 }

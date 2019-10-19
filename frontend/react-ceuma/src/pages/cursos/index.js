@@ -5,12 +5,11 @@ import { EXCEL_CURSOS } from '../../services/constants'
 
 
 const Cursos = props => {
-  console.log(props)
   return (<tr>
 
     <td>{props.curso.nome}</td>
-    <td>{props.curso.dataRegistro}</td>
-    <td>{props.curso.cargaHoraria}</td>
+    <td>{props.curso.createdAt}</td>
+    <td>{props.curso.carga_horaria}</td>
 
     <td>
       <a  href={"/editarCurso/" + props.curso.id}>Editar</a>
@@ -32,7 +31,6 @@ export default class CursosListar extends Component {
   componentDidMount() {
     api.get('/cursos')
       .then(response => {
-        console.log(response.data)
         this.setState({ cursos: response.data });
       })
       .catch(function (error) {

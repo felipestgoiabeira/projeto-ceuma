@@ -9,6 +9,6 @@ export default class FormWrapper extends Component{
     }
 
     render(){
-        return <Redirect to='/home'/>
+        return <Redirect to='/'/>
     }
 }

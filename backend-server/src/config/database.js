@@ -5,7 +5,7 @@ module.exports ={
     "database": "ceuma_auth",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "logging" : false,
+    "logging" : console.log,
     "define": {
       "timestamps": true,
       "underscored": true,

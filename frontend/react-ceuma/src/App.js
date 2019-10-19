@@ -1,22 +1,26 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 import Routes from './routes';
-import Menu from './components/header'
+import Menu from './components/MenuParent'
 import 'semantic-ui-css/semantic.min.css';
+
 
 function App() {
 
   return (
-    <div className="App">
-     <Menu />
+    <BrowserRouter>
+      <div className="App">
+         <Menu  />
 
-      <div className="ui container">
+        <div className="ui container">
 
-        <Routes />
+          <Routes />
+
+        </div>
 
       </div>
-
-    </div>
+    </BrowserRouter>
 
   );
 }

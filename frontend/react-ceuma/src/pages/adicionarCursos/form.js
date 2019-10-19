@@ -5,6 +5,8 @@ import './index.css'
 import { Form, Grid, FormField } from 'semantic-ui-react';
 import api from '../../services/api';
 
+var submited = true;
+
 const App = ({
   values,
   handleChange,
@@ -25,7 +27,7 @@ const App = ({
 
         <Form onSubmit={handleSubmit} >
           <Form.Group widths='equal'>
-            <FormField>
+            <FormField disabled={submited}>
               <label>Nome *</label>
               <input
                 type="text"
@@ -34,11 +36,13 @@ const App = ({
                 value={values.nome}
                 onBlur={handleBlur}
                 placeholder='Nome do Aluno'
+                disabled={submited}
               />
               {touched.nome && errors.nome && <p className='error'>{errors.nome}</p>}
             </FormField>
 
-            <FormField>
+
+            <FormField disabled={submited} >
               <label>Carga Horária</label>
               <input
                 type="text"
@@ -53,10 +57,16 @@ const App = ({
             </FormField>
           </Form.Group>
 
-          <button type='submit' className='ui primary basic button' >Adicionar Curso</button>
+          <button disabled={submited} type='submit' className='ui primary basic button' >Adicionar Curso</button>
 
 
         </Form>
+
+        {submited ? (<div className="ui success message">
+          <div className="header">Curso Adicionado com Sucesso</div>
+          <a href="/cursos" > Ver cursos </a> |
+             <a href="/adicionarCursos" > Adicionar Novo Curso </a>
+        </div>) : ""}
 
       </Grid.Column>
 
@@ -88,11 +98,11 @@ const FormikApp = withFormik({
     api.post('./cursos', {
 
       nome: values.nome,
-      cargaHoraria: values.cargaHoraria
-      
+      carga_horaria: values.cargaHoraria
+
     })
     // console.log(values)
-    alert("Curso adicionado com Sucesso");
+    submited = true;
 
   }
 })(App)

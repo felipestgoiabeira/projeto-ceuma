@@ -4,10 +4,8 @@ import * as Yup from 'yup';
 // import './index.css'
 import { Form, Grid, FormField } from 'semantic-ui-react';
 import api from '../../services/api';
-import { login,isAuthenticated } from '../../services/auth';
-import Redirect from '../../components/redirect';
+import { login, isAuthenticated } from '../../services/auth';
 
-var sucess = false
 const App = ({
     values,
     handleChange,
@@ -19,7 +17,6 @@ const App = ({
     handleSubmit
 
 }) => {
-
     return (
 
         <div className="column">
@@ -54,7 +51,7 @@ const App = ({
                             {touched.senha && errors.senha && <p className='error'>{errors.senha}</p>}
                         </FormField>
 
-                        <button type='submit' className='ui primary basic button' >Login</button>
+                        <button type='submit' className='ui primary basic button'>Login</button>
 
 
                     </Form>
@@ -62,20 +59,16 @@ const App = ({
             </Grid>
         </div>
 
-
-
-
-    )
+    );
 }
 
 const FormikApp = withFormik({
     enableReinitialize: true,
-    mapPropsToValues({ email, senha }) {
+    mapPropsToValues({ email, senha, success }) {
         return {
             email: email || '',
             senha: senha || '',
 
-            /* [{ nome: 'Direito', idCurso: 1 }, { nome: "Medicina", idCurso: 2 } */
         }
     },
     validationSchema: Yup.object().shape({
@@ -84,30 +77,34 @@ const FormikApp = withFormik({
         email: Yup.string().email("Insira um email válido").required("Insira o email"),
 
     }),
-    handleSubmit(values, { props }) {
+    handleSubmit(values, { props, resetForm }) {
         try {
-            console.log({
-                email: values.email,
-                password: values.senha
-            })
+            
             api.post('/login', {
                 email: values.email,
                 password: values.senha,
 
             }).then(response => {
-                console.log(response)
+                //console.log(response)
                 if (response.data.success) {
+
                     const token = response.data.token.split(' ')[1];
-                    console.log(token)
+                    //console.log(token)
                     login(token)
-                    if( isAuthenticated() ){
-                        props.history.push("/welcome")
+
+                    if (isAuthenticated()) {
+
+                        return props.history.push("/")
+
                     }
-                    
-                };
+
+                }
+                else{
+                    values.errros.login = "Senha ou Email incorretos"
+                }
                 ;
             });
-            
+
         } catch (error) {
             console.log(error)
         }

@@ -42,15 +42,6 @@ module.exports = {
 
     },
 
-
-    /*      
-            } catch (erro) {
-                console.log('problemas de comunicação com o banco de dados');
-                res.sendStatus(500).json(erro);
-    
-            }
-    
-        } */
     async login(req, res) {
         try {
             //procura o usuário pelo email
@@ -66,14 +57,16 @@ module.exports = {
                         res.send('Usuário permitido');
 
                     }else{
-                        res.send('incorrect password')
+                        res.send('Senha Incorreta')
                         res.redirect('/');
                     }
                 });
                 console.log(senha)
 
                 console.log(senha == user.dataValues.senha)
+
                 res.json("Usuario Verificado")
+
             } else {
                 res.json('Email inválido')
             }

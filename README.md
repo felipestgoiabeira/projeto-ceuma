@@ -3,10 +3,12 @@
  
  O sistema tem os seguintes requisitos 
  
-    [x]Inserir 3 cursos (código do curso, nome do curso, data de cadastro, carga horária) *Administração, Direito, Medicina;
+    [x]Inserir 3 cursos (código do curso, nome do curso, data de cadastro, carga horária) *Administração, Direito,
+    Medicina;
     [x]Remover cursos;
     [x]Alterar cursos;
-    [x]Inserir 7 alunos (código do aluno, nome do aluno, CPF, Endereço, CEP, E-mail, número de Telefone)  atrelando aos respectivos cursos na seguinte configuração: 2 aluno para Direito, 2 para Administração, 3 para Medicina;
+    [x]Inserir 7 alunos (código do aluno, nome do aluno, CPF, Endereço, CEP, E-mail, número de Telefone)  atrelando
+    aos respectivos cursos na seguinte configuração: 2 aluno para Direito, 2 para Administração, 3 para Medicina;
     [x]Remover alunos;
     [x]Alterar alunos;
     [x]Listar os cursos e os alunos que fazem parte deste curso;

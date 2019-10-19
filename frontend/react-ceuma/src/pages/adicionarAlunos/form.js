@@ -8,7 +8,7 @@ import api from '../../services/api';
 var submited = false;
 
 const Cursos = props => {
-  //console.log(props)
+  
   return (
     <option value={`${props.curso.id}`}> {props.curso.nome}</option>
   );
@@ -27,24 +27,17 @@ const App = ({
 }) => {
 
   function cursoList() {
-    // const cursos = [{ nome: "Medicina", idCurso: 1 },{ nome: "Direito", idCurso: 2 }, {nome: "Administração", idCurso:3}];
-    //const cursos = values.cursos;
 
     if (values.listCursos.length > 1) {
+
       const cursos = [...values.listCursos];
-      console.log(cursos === values.cursos)
-      console.log(cursos)
-      /*  for (var i = 0; i < values.cursos.length; i++) {
-         cursos.push(values.cursos[i])
-         console.log(cursos);
-       } */
-      return [...values.listCursos].map(function (cursoAtual, i) {
+
+      return cursos.map(function (cursoAtual, i) {
+
         return <Cursos curso={cursoAtual} key={i} />;
+
       });
     }
-    /* api.get("/cursos").then(response =>{
-      cursos = response;
-    }); */
 
 
 
@@ -163,9 +156,10 @@ const App = ({
 
           
         </Form>
-        {submited ? (<div class="ui success message">
-            <div class="header">Aluno Adicionado com Sucesso</div>
-             <a href="/alunos" > Ver alunos </a> 
+        {submited ? (<div className="ui success message">
+            <div className="header">Aluno Adicionado com Sucesso</div>
+             <a href="/alunos" > Ver alunos </a> |
+             <a href="/adicionarAlunos" > Adicionar Novo Aluno </a>
           </div>) : ""}
 
       </Grid.Column>
@@ -216,7 +210,7 @@ const FormikApp = withFormik({
         cep: values.cep,
         email: values.email,
         telefone: values.telefone,
-        curso_id: values.cursos,
+        curso_id: values.curso,
 
       });
       submited = true;

@@ -3,6 +3,7 @@ const Curso = require('../app/models').cursos
 module.exports = {
 
     async index(req, res) {
+        
         try {
 
             const curso = await Curso.findByPk(req.params.id);
@@ -25,9 +26,9 @@ module.exports = {
 
     },
 
-    async update() {
-        try {
+    async update(req,res) {
 
+        try {
             const curso = await Curso.update(req.body, { where: { id: req.params.id } });
             return res.send (curso);
 
@@ -75,7 +76,6 @@ module.exports = {
         try {
 
             const curso = await Curso.findByPk(req.params.id,{include:[models.alunos]});
-            console.log(curso)
             return res.send (curso);
 
         } catch (error) {

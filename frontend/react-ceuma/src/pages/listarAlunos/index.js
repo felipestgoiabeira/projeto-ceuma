@@ -3,9 +3,7 @@ import './style.css';
 import api from '../../services/api';
 
 const Cursos = props => {
-  console.log(props)
   return (<tr>
-
     <td>{props.curso.nome}</td>
     
     <td>{props.curso.cargaHoraria}</td>

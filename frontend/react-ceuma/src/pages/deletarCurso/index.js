@@ -23,6 +23,7 @@ export default class AdicionarCursos extends Component {
             <br/>
             <h3>Curso Excluído</h3>
             <p>Você acaba de deletar o curso com sucesso!</p>
+            <a href="/cursos">Ver Cursos</a> | <a href="/adicionarCursos">Adicionar novo Curso</a>
             </div>
             </>
         )}
