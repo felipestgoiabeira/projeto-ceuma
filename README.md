@@ -1,5 +1,48 @@
-## Seletivo 
-###### Repostório para ser apresentado NTI do Grupo Ceuma. 
+# Gerenciamento de Cursos e Alunos
+
+Sistema para gerenciamento de alunos e cursos, usuários logados no sistema podem ver, adicionar, alterar e deletar Cursos e Alunos.
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+
+
+## Install
+
+```sh
+npm install
+```
+
+
+## Running the tests
+
+How to run the automated tests for this system
+
+### Break down into end to end tests
+
+Explain what these tests test and why
+
+```
+npm run test
+```
+
+## Built With
+* [React](https://reactjs.org/) - A JavaScript library for building user interfaces.
+* [Nodejs](https://expressjs.com/) - Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.
+* [Express](https://expressjs.com/) - Fast, unopinionated, minimalist web framework for Node.js.
+* [Axios](https://github.com/axios/axios) - Promise based HTTP client for the browser and node.js
+* [JSON Web Tokens](https://jwt.io/) - JSON Web Tokens are an open, industry standard RFC 7519 method for representing claims securely between two parties.
+* [Passportjs](https://rometools.github.io/rome/) - Simple, unobtrusive authentication for Node.js.
+* [Formik](https://jaredpalmer.com/formik/) -Build forms in React, without the tears.
+* [Yup](https://github.com/jquense/yup) - Read, manipulate and write spreadsheet data and styles to XLSX and JSON.
+* [Sequelize](https://sequelize.org/) - Sequelize is a promise-based Node.js ORM. It features solid transaction support, relations, eager and lazy loading, read replication and more.
+* [bcrypts](https://www.npmjs.com/package/bcrypt) - A library to help you hash passwords. 
+* [validator](https://www.mysql.com/) - TA library of string validators and sanitizers.
+* [exceljs](https://www.npmjs.com/package/exceljs) - Read, manipulate and write spreadsheet data and styles to XLSX and JSON.
+
+
+## Requesitos do Sistema
  
  O sistema tem os seguintes requisitos 
  
@@ -17,3 +60,10 @@
     [x]É desejável que o sistema possa imprimir os dados dos cursos;
     [x]É desejável que o sistema contenha um controle de segurança do acesso ao sistema;
     [x]É desejável que o sistema guarde log de acesso em arquivo txt;
+    
+## Authors
+
+* **Felipe dos Santos Goiabeira** - *Initial work* - [Felipe Goiabeira](https://github.com/felipestgoiabeira)
+
+
+

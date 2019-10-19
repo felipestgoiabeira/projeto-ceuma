@@ -6,7 +6,6 @@ const Curso = require('../app/models').cursos
 const  auth = require ('./auth')
 
 
-
 // -> Express RestAPIs
 router.get("/download/alunos", async function (req, res) {
 	try {
