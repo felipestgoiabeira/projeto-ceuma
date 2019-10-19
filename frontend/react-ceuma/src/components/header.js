@@ -41,7 +41,7 @@ const Logout = () =>
 
 
 const Mount = (props) => (
-    <div className="ui stackable menu">
+    <div className="ui stackable menu"  style= {{margin: 10}}>
 
         <div className="item">
             <img className='logo' src={logo} alt='logoCeuma' />

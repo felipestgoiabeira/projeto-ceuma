@@ -9,7 +9,8 @@ class FormWrapper extends Component{
         return (
         <>
          <Menu /> 
-        <Form {...this.props}/>)
+        <Form {...this.props}/>
+        
         </>)
     }
 }

@@ -73,8 +73,9 @@ module.exports = {
     },
     async showAlunos(req,res){
         try {
-
-            const curso = await Curso.findByPk(req.params.id,{include:[models.alunos]});
+            console.log(req.params)
+            const curso = await Curso.findByPk(req.params.id,{include:'alunos'});
+            console.log(curso)
             return res.send (curso);
 
         } catch (error) {

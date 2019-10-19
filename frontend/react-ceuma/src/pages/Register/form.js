@@ -98,8 +98,8 @@ const FormikApp = withFormik({
     handleSubmit(values, { props }) {
         try {
             console.log({email : values.email,
-            password:values.password})
-            api.post('/login', {
+            password:values.senha})
+            api.post('/register', {
                 email: values.email,
                 password: values.senha,
                 password2: values.senha2,

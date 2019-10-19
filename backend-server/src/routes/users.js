@@ -17,13 +17,15 @@ router.post("/register", (req, res) => {
     // Form validation
   const { errors, isValid } = validateRegisterInput(req.body);
   // Check validation
-    if (!isValid) {
+     if (!isValid) {
       return res.status(400).json(errors);
-    }
-  User.findOne({ email: req.body.email }).then(user => {
+    } 
+    const email = req.body.email;
+    console.log(email)
+  User.findOne({where:{ email: req.body.email }}).then(user => {
       if (user) {
 
-        return res.status(400).json({ email: "Email already exists" });
+        return res.status(400).json({ email: "Email já existe" });
 
       } else {
 
@@ -60,11 +62,11 @@ router.post("/register", (req, res) => {
     const password = req.body.password;
     // Find user by email
     
-    User.findOne({ email }).then(user => {
+    User.findOne({where:{ email }}).then(user => {
 
       // Check if user exists
       if (!user) {
-        return res.status(404).json({ emailnotfound: "Email not found" });
+        return res.json({ emailnotfound: "Email not found" });
       }
 
       // Check password

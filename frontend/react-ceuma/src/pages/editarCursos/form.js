@@ -1,9 +1,12 @@
 import React from 'react';
 import { withFormik } from 'formik';
 import * as Yup from 'yup';
-import './index.css'
+import './index.css';
 import { Form, Grid, FormField } from 'semantic-ui-react';
 import api from '../../services/api';
+
+var submited = false;
+
 const App = ({
   values,
   handleChange,
@@ -24,7 +27,7 @@ const App = ({
 
         <Form onSubmit={handleSubmit} >
           <Form.Group widths='equal'>
-            <FormField>
+            <FormField disabled={submited}>
               <label>Nome *</label>
               <input
                 type="text"
@@ -37,7 +40,7 @@ const App = ({
               {touched.nome && errors.nome && <p className='error'>{errors.nome}</p>}
             </FormField>
 
-            <FormField>
+            <FormField disabled={submited}>
               <label>Carga Horária</label>
               <input
                 type="text"
@@ -54,7 +57,16 @@ const App = ({
 
           <button type='submit' className='ui primary button' >Alterar Curso</button>
 
+          
+
         </Form>
+
+        {submited ? (<div className="ui success message">
+          <div className="header">Curso Alterado com Sucesso</div>
+          <a href="/cursos" > Ver cursos </a> |
+             <a href="/adicionarCursos" > Adicionar Novo Curso </a>
+        </div>) : ""}
+        
 
       </Grid.Column>
 
@@ -89,7 +101,8 @@ const FormikApp = withFormik({
         carga_horaria: values.cargaHoraria
   
       }) )
-      alert("Curso alterado com Sucesso")
+      submited = true;
+      resetForm();
       
     } catch (error) {
 

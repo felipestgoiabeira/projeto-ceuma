@@ -11,7 +11,7 @@ const Login = () => (
             Login
             </a>
         <a href='/register' className="ui item">
-            Register
+            Sign up
             </a>
     </div>);
 

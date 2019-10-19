@@ -6,6 +6,7 @@ import { Form, Grid, FormField } from 'semantic-ui-react';
 import api from '../../services/api';
 import { login, isAuthenticated } from '../../services/auth';
 
+var emailnotfound = false;
 const App = ({
     values,
     handleChange,
@@ -21,8 +22,10 @@ const App = ({
 
         <div className="column">
             <h3 >{'Login'}</h3>
+            <p style={{marginBottom:5}}>Para acessar o sistema é necessário estar logado.</p> <br/>
             <Grid columns={2}>
                 <Grid.Column>
+                     { emailnotfound && <p className='error'>Email ou senha incorretos!</p>}
                     <Form onSubmit={handleSubmit} >
 
                         <FormField>
@@ -57,6 +60,7 @@ const App = ({
                     </Form>
                 </Grid.Column>
             </Grid>
+            <p style={{marginTop: 10}}>Ainda não tem usuário? <a href="/register">Sign up</a></p>
         </div>
 
     );
@@ -85,7 +89,12 @@ const FormikApp = withFormik({
                 password: values.senha,
 
             }).then(response => {
-                //console.log(response)
+                console.log(response)
+                if (response.data.emailnotfound){
+                    console.log("não encontrado")
+                    emailnotfound = true;
+                    resetForm();
+                }
                 if (response.data.success) {
 
                     const token = response.data.token.split(' ')[1];
@@ -100,13 +109,14 @@ const FormikApp = withFormik({
 
                 }
                 else{
-                    values.errros.login = "Senha ou Email incorretos"
+                    
                 }
                 ;
             });
 
         } catch (error) {
-            console.log(error)
+            /* console.log(error)
+            console.log("Senha ou Email incorretos") */
         }
     }
 })(App)
