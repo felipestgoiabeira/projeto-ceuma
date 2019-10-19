@@ -3,7 +3,7 @@ const Curso = require('../app/models').cursos
 module.exports = {
 
     async index(req, res) {
-        
+
         try {
 
             const curso = await Curso.findByPk(req.params.id);
@@ -56,15 +56,14 @@ module.exports = {
 
     async destroy(req, res) {
         try {
-
-            const deleted = await Curso.destroy({
+            
+            await Curso.destroy({
                 where: { id: req.params.id }
             });
+            
 
-            if (deleted) {
-
-                return res.send(curso);
-            }
+            return res.send(curso);
+            
             throw new Error( "Curso não encontrado");
 
         } catch (error) {

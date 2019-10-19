@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     curso_id: DataTypes.INTEGER
   }, {});
   Alunos.associate = function(models) {
-    Alunos.belongsTo(models.cursos, {foreignKey: 'curso_id'})
+    Alunos.belongsTo(models.cursos, {foreignKey: 'curso_id', as: 'curso'})
   };
   return Alunos;
 };

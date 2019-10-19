@@ -17,7 +17,7 @@ module.exports = {
     async show(req, res) {
         try {
 
-            const aluno = await Aluno.findAll();
+            const aluno = await Aluno.findAll({include : 'curso'});
             return res.send(aluno);
 
         } catch (error) {

@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     carga_horaria: DataTypes.STRING
   }, {});
   cursos.associate = function(models) {
-    cursos.hasMany(models.alunos, {foreignKey: 'curso_id'})
+    cursos.hasMany(models.alunos, {as: 'alunos'})
     // associations can  be defined here
   };
   return cursos;

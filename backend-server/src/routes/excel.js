@@ -3,6 +3,8 @@ const express = require('express');
 const router = express.Router();
 const Aluno = require('../app/models').alunos
 const Curso = require('../app/models').cursos
+const  auth = require ('./auth')
+
 
 
 // -> Express RestAPIs
@@ -48,7 +50,7 @@ router.get("/download/alunos", async function (req, res) {
    
 );
 
-router.get("/download/cursos", async function (req, res) {
+router.get("/download/cursos", auth.required,async function (req, res) {
 	try {
         // -> Create a connection to the database
 	cursosResponse = await Curso.findAll();		

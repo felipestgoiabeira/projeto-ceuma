@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { EXCEL_ALUNOS } from '../../services/constants'
 
 const Alunos = props => (
+  
   <>
     <tr>
       <td>{props.aluno.nome}</td>
@@ -13,6 +14,7 @@ const Alunos = props => (
       <td>{props.aluno.endereco}</td>
       <td>{props.aluno.cep}</td>
       <td>{props.aluno.telefone}</td>
+      <td>{props.aluno.curso.nome}</td>
       <td>
         <Link to={"/editarAluno/" + props.aluno.id}>Alterar</Link>
       </td>
@@ -60,6 +62,7 @@ export default class AlunosListar extends Component {
               <th scope="col">Endereço</th>
               <th scope="col">CEP</th>
               <th scope="col">Telefone</th>
+              <th scope="col">Curso</th>
               <th scope="col">Editar</th>
               <th scope="col">Deletar</th>
 

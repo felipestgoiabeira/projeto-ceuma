@@ -5,7 +5,7 @@ import './index.css'
 import { Form, Grid, FormField } from 'semantic-ui-react';
 import api from '../../services/api';
 
-var submited = true;
+var submited = false;
 
 const App = ({
   values,
@@ -57,7 +57,7 @@ const App = ({
             </FormField>
           </Form.Group>
 
-          <button disabled={submited} type='submit' className='ui primary basic button' >Adicionar Curso</button>
+          <button disabled={submited} type='submit' className='ui primary button' >Adicionar Curso</button>
 
 
         </Form>

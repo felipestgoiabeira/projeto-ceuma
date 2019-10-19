@@ -5,16 +5,16 @@ const alunoController = require('../Controllers/AlunosController');
 const cursosController = require('../Controllers/CursosController');
 
 
-router.get('/alunos',auth.required ,alunoController.show);
+router.get('/alunos', auth.required, alunoController.show);
 
-router.get('/alunos/:id',auth.required , alunoController.index)
+router.get('/alunos/:id', auth.required, alunoController.index)
 
-router.post('/alunos',auth.required , alunoController.store);
+router.post('/alunos', auth.required, alunoController.store);
 
-router.delete('/alunos/:id',auth.required , alunoController.destroy);
+router.delete('/alunos/:id', auth.required, alunoController.destroy);
 
-router.put('/alunos/:id',auth.required , alunoController.update);
+router.put('/alunos/:id', auth.required, alunoController.update);
 
-router.get('/listarAlunos/:id',auth.required , cursosController.showAlunos)
+router.get('/listarAlunos/:id', auth.required,cursosController.showAlunos)
 
 module.exports = router
