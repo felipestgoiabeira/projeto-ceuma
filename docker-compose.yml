@@ -1,0 +1,44 @@
+version: '2'
+
+services:
+  server:
+    build: ./server
+
+    expose:
+      - 8000
+
+    environment:
+      API_HOST: "http://localhost:3000/"
+      APP_SERVER_PORT: 8000
+
+    ports:
+      - 8000:8000
+    volumes:
+      - ./server/src:src/app/project-server
+    command: npm run dev
+    depends_on:
+      - mysql
+
+  client:
+    build: ./client/react
+    expose:
+      - 8000
+    environment:
+      API_HOST: "http://localhost:3000/"
+      APP_SERVER_PORT: 8000
+    ports:
+      - 4000:4000
+    volumes:
+      - ./client:/src/app
+    command: yarn start
+
+  mysql:
+    image: mysql:5.7.24
+    container_name: db_mysql
+    environment:
+      - MYSQL_DATABASE=ceuma_auth
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+    restart: always
+    volumes:
+      - ./db:/src/mysql
