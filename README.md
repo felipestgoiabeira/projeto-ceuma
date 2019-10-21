@@ -8,23 +8,21 @@ These instructions will get you a copy of the project up and running on your loc
 
 
 
-## Install
+## Setup project
 
 ```sh
-npm install
+docker-compose -f "docker-compose.yml" up -d --build
 ```
 
-
-## Running the tests
-
-How to run the automated tests for this system
-
-### Break down into end to end tests
+### Run sequelize migrations
 
 Explain what these tests test and why
 
 ```
-npm run test
+docker exec -it ceuma_client_1 /bin/sh -c "[ -e /bin/bash ] && /bin/bash || /bin/sh"
+
+./node_modules/.bin/sequelize db:migrate
+
 ```
 
 ## Built With
