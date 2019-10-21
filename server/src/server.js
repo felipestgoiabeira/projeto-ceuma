@@ -54,10 +54,6 @@ app.use('/', alunos)
 app.use('/', excel)
 
 
-
-
-
-
 // PORT from .env file
 const PORT = process.env.APP_SERVER_PORT ;
 

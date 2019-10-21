@@ -35,7 +35,7 @@ const App = ({
                 onChange={handleChange}
                 value={values.nome}
                 onBlur={handleBlur}
-                placeholder='Nome do Aluno'
+                placeholder='Nome do Curso'
                 disabled={submited}
               />
               {touched.nome && errors.nome && <p className='error'>{errors.nome}</p>}
@@ -52,7 +52,7 @@ const App = ({
                 value={values.email}
                 placeholder="Carga Horária do Curso"
               />
-              {touched.email && errors.email && <p className='error'>{errors.email}</p>}
+              {touched.cargaHoraria && errors.cargaHoraria && <p className='error'>{errors.cargaHorariacd }</p>}
 
             </FormField>
           </Form.Group>
@@ -95,14 +95,15 @@ const FormikApp = withFormik({
     }
   },
   handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
-    api.post('./cursos', {
+    api.post('/cursos', {
 
       nome: values.nome,
       carga_horaria: values.cargaHoraria
 
     })
-    // console.log(values)
+    
     submited = true;
+    resetForm();
 
   }
 })(App)

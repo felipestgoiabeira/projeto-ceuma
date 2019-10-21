@@ -1,7 +1,7 @@
 module.exports ={
   "development": {
     "username": "root",
-    "password": "root",
+    "password": "password",
     "database": "ceuma_auth",
     "host": "db_mysql",
     "dialect": "mysql",

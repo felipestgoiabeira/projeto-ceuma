@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 services:
   server:
@@ -8,37 +8,62 @@ services:
       - 8000
 
     environment:
-      API_HOST: "http://localhost:3000/"
       APP_SERVER_PORT: 8000
 
     ports:
       - 8000:8000
+
     volumes:
-      - ./server/src:src/app/project-server
+      - /home/felipegoiabeira/src/Ceuma/server/src:/srv/app/src
+
     command: npm run dev
+
+    links:
+      - client
+
+    networks:
+      - networkreact
+
     depends_on:
       - mysql
 
   client:
     build: ./client/react
+
     expose:
-      - 8000
-    environment:
-      API_HOST: "http://localhost:3000/"
-      APP_SERVER_PORT: 8000
+      - 4000
+
     ports:
-      - 4000:4000
+      - 4000:3000
+
     volumes:
-      - ./client:/src/app
+      - ./client/react/src:/srv/app/project-client/src
+
     command: yarn start
+
+    networks:
+      - networkreact
 
   mysql:
     image: mysql:5.7.24
+
     container_name: db_mysql
+
     environment:
+      - MYSQL_HOSTNAME=mysql
       - MYSQL_DATABASE=ceuma_auth
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=root
+      - MYSQL_ROOT_USER=root
+      - MYSQL_ROOT_PASSWORD=password
+
     restart: always
     volumes:
-      - ./db:/src/mysql
+      - db:/src/mysql
+    networks: 
+      - networkreact
+
+volumes:
+  db:
+
+networks: 
+    networkreact:
+      driver: bridge
