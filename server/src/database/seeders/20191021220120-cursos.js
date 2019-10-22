@@ -19,7 +19,7 @@ module.exports = {
           nome: 'Administração',
           carga_horaria: '300'
         }  
-    ], {});
+    ], {})
     
   },
 

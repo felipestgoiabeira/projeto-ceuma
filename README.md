@@ -41,7 +41,7 @@ npx sequelize db:seed:all
 * [exceljs](https://www.npmjs.com/package/exceljs) - Read, manipulate and write spreadsheet data and styles to XLSX and JSON.
 
 
-## Requesitos do Sistema
+<!-- ## Requesitos do Sistema -->
  
  O sistema tem os seguintes requisitos 
  

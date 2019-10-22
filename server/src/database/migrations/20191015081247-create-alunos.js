@@ -30,10 +30,14 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       created_at: {
+        
         type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW
       },
       updated_at: {
-        type: Sequelize.DATE
+        
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW
       }
     });
   },

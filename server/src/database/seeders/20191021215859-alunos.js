@@ -16,6 +16,8 @@ module.exports = {
         cep: '605987445',
         cpf: '605138184',
         curso_id: '1',
+
+        
       },
       {
         nome: 'Alexandre Nunes',
