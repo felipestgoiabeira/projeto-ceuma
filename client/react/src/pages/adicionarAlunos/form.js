@@ -28,7 +28,7 @@ const App = ({
 
   function cursoList() {
 
-    if (values.listCursos.length > 1) {
+    if (values.listCursos.length >= 1) {
 
       const cursos = [...values.listCursos];
 
@@ -83,7 +83,7 @@ const App = ({
             <FormField disabled={submited} className={touched.cpf && errors.cpf && 'field error'}>
               <label>CPF</label>
               <input
-                type="text"
+                type="number"
                 name="cpf"
                 onChange={handleChange}
                 value={values.cpf}
@@ -142,6 +142,7 @@ const App = ({
 
             <select disabled={submited} name='curso' onBlur={handleBlur} defaultValue={values.cursos} onChange={handleChange} >
               <option value = '0'> Selecione um curso</option>
+              console.log("cursos")
               {cursoList()}
 
             </select>

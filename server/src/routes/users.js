@@ -18,6 +18,7 @@ router.post("/register", (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
   // Check validation
      if (!isValid) {
+       console.log(errors)
       return res.status(400).json(errors);
     } 
     const email = req.body.email;
@@ -30,7 +31,7 @@ router.post("/register", (req, res) => {
       } else {
 
         const newUser = new User({
-          name: req.body.name,
+          nome: req.body.nome,
           email: req.body.email,
           password: req.body.password
 

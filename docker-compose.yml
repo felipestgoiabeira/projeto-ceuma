@@ -3,52 +3,39 @@ version: '3'
 services:
   server:
     build: ./server
-
+    container_name: backend-server
     expose:
       - 8000
-
     environment:
       APP_SERVER_PORT: 8000
-
     ports:
       - 8000:8000
-
     volumes:
-      - /home/felipegoiabeira/src/Ceuma/server/src:/srv/app/src
-
+      - ./server:/srv/app/
     command: npm run dev
-
     links:
       - client
-
     networks:
       - networkreact
-
     depends_on:
       - mysql
 
   client:
     build: ./client/react
-
+    container_name: frontend-react
     expose:
       - 4000
-
     ports:
       - 4000:3000
-
     volumes:
-      - ./client/react/src:/srv/app/project-client/src
-
+      - ./client/react/:/srv/app/project-client/
     command: yarn start
-
     networks:
       - networkreact
 
   mysql:
     image: mysql:5.7.24
-
     container_name: db_mysql
-
     environment:
       - MYSQL_HOSTNAME=mysql
       - MYSQL_DATABASE=ceuma_auth

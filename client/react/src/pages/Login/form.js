@@ -36,7 +36,7 @@ const App = ({
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.email}
-                                placeholder="Email do Aluno"
+                                placeholder="Email do Usuário"
                             />
                             {touched.email && errors.email && <p className='error'>{errors.email}</p>}
 

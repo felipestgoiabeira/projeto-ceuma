@@ -19,9 +19,10 @@ docker-compose -f "docker-compose.yml" up -d --build
 Explain what these tests test and why
 
 ```
-docker exec -it ceuma_client_1 /bin/sh -c "[ -e /bin/bash ] && /bin/bash || /bin/sh"
+docker exec -it backend-server /bin/sh -c "[ -e /bin/bash ] && /bin/bash || /bin/sh"
 
-./node_modules/.bin/sequelize db:migrate
+npx sequelize db:migrate
+npx sequelize db:seed:all
 
 ```
 
