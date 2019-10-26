@@ -1,58 +1,12 @@
-require("dotenv").config();
-var fs = require('fs')
-const logger = require('morgan');
-const express = require('express');
-const bodyParser = require("body-parser");
-const cookieParser = require('cookie-parser')
-
-const passport = require("passport");
-
-const cursos = require('./routes/cursos');
-const users = require("./routes/users");
-const alunos = require("./routes/alunos");
-const excel = require("./routes/excel");
-
-const cors = require('cors')
+const app = require("./config/express");
 const models = require('./app/models')
-
-const app = express();
-
-app.use(logger('common', {
-    stream: fs.createWriteStream('./access.log', {flags: 'a'})
-}));
-
-app.use(logger('dev'));
-
-app.use(cors());
-
-app.use(bodyParser.urlencoded({ extended: false }));
-
-app.use(bodyParser.json());
-
-app.use(cookieParser())
-
-// Passport middleware
-app.use(passport.initialize());
-
-// Passport config
-require("./config/passport/passport")(passport);
-
+const routes = require("./routes")
 //# Routes
 
-//endpoints para usuarios
-app.use('/', users);
-
-//endpoints para cursos
-app.use('/', cursos);
-
-// endpoints para alunos
-app.use('/', alunos)
-
-// endpoints para download tabelas excel
-app.use('/', excel)
+app.use("/", routes)
 
 // PORT from .env file
-const PORT = process.env.APP_SERVER_PORT ;
+const PORT = process.env.APP_SERVER_PORT || 8000 ;
 
 // sync sequelize mysql and start the server
 models.sequelize.sync().then(function () {
