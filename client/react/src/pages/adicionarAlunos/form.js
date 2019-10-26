@@ -1,18 +1,15 @@
 import React from 'react';
 import { withFormik } from 'formik';
 import * as Yup from 'yup';
-import './index.css'
+import './index.css';
 import { Form, Grid, FormField } from 'semantic-ui-react';
 import api from '../../services/api';
 
 var submited = false;
 
 const Cursos = props => {
-  
-  return (
-    <option value={`${props.curso.id}`}> {props.curso.nome}</option>
-  );
-}
+  return <option value={`${props.curso.id}`}> {props.curso.nome}</option>;
+};
 
 const App = ({
   values,
@@ -22,36 +19,29 @@ const App = ({
   errors,
   touched,
   isSubmitting,
-  handleSubmit
-
+  handleSubmit,
 }) => {
-
   function cursoList() {
-
     if (values.listCursos.length >= 1) {
-
       const cursos = [...values.listCursos];
 
-      return cursos.map(function (cursoAtual, i) {
-
+      return cursos.map(function(cursoAtual, i) {
         return <Cursos curso={cursoAtual} key={i} />;
-
       });
     }
-
-
-
   }
 
   return (
-
     <Grid columns={2}>
       <Grid.Column>
-        <h3 style={{ marginLeft: "0.8em" }}>{'Adicionar novo aluno'}</h3>
+        <h3 style={{ marginLeft: '0.8em' }}>{'Adicionar novo aluno'}</h3>
 
-        <Form onSubmit={handleSubmit} >
-          <Form.Group widths='equal'>
-            <FormField disabled={submited} className={touched.nome && errors.nome && 'field error'}>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group widths="equal">
+            <FormField
+              disabled={submited}
+              className={touched.nome && errors.nome && 'field error'}
+            >
               <label>Nome *</label>
               <input
                 type="text"
@@ -59,12 +49,17 @@ const App = ({
                 onChange={handleChange}
                 value={values.nome}
                 onBlur={handleBlur}
-                placeholder='Nome do Aluno'
+                placeholder="Nome do Aluno"
               />
-              {touched.nome && errors.nome && <p className='error'>{errors.nome}</p>}
+              {touched.nome && errors.nome && (
+                <p className="error">{errors.nome}</p>
+              )}
             </FormField>
 
-            <FormField disabled={submited} className={touched.email && errors.email && 'field error'}>
+            <FormField
+              disabled={submited}
+              className={touched.email && errors.email && 'field error'}
+            >
               <label>Email</label>
               <input
                 type="email"
@@ -74,13 +69,17 @@ const App = ({
                 value={values.email}
                 placeholder="Email do Aluno"
               />
-              {touched.email && errors.email && <p className='error'>{errors.email}</p>}
-
+              {touched.email && errors.email && (
+                <p className="error">{errors.email}</p>
+              )}
             </FormField>
           </Form.Group>
 
-          <Form.Group widths='equal'>
-            <FormField disabled={submited} className={touched.cpf && errors.cpf && 'field error'}>
+          <Form.Group widths="equal">
+            <FormField
+              disabled={submited}
+              className={touched.cpf && errors.cpf && 'field error'}
+            >
               <label>CPF</label>
               <input
                 type="number"
@@ -88,12 +87,17 @@ const App = ({
                 onChange={handleChange}
                 value={values.cpf}
                 onBlur={handleBlur}
-                placeholder='CPF'
+                placeholder="CPF"
               />
-              {touched.cpf && errors.cpf && <p className='error'>{errors.cpf}</p>}
+              {touched.cpf && errors.cpf && (
+                <p className="error">{errors.cpf}</p>
+              )}
             </FormField>
 
-            <FormField disabled={submited} className={touched.endereco && errors.endereco && 'field error'}>
+            <FormField
+              disabled={submited}
+              className={touched.endereco && errors.endereco && 'field error'}
+            >
               <label>Endereço</label>
               <input
                 type="text"
@@ -103,12 +107,16 @@ const App = ({
                 value={values.endereco}
                 placeholder="Endereço do Aluno"
               />
-              {touched.endereco && errors.endereco && <p className='error'>{errors.endereco}</p>}
-
+              {touched.endereco && errors.endereco && (
+                <p className="error">{errors.endereco}</p>
+              )}
             </FormField>
           </Form.Group>
-          <Form.Group widths='equal'>
-            <FormField disabled={submited} className={touched.cep && errors.cep && 'field error'}> 
+          <Form.Group widths="equal">
+            <FormField
+              disabled={submited}
+              className={touched.cep && errors.cep && 'field error'}
+            >
               <label>CEP</label>
               <input
                 type="text"
@@ -116,13 +124,17 @@ const App = ({
                 onChange={handleChange}
                 value={values.cep}
                 onBlur={handleBlur}
-                placeholder='CEP'
+                placeholder="CEP"
               />
-              {touched.cep && errors.cep && <p className='error'>{errors.cep}</p>}
-
+              {touched.cep && errors.cep && (
+                <p className="error">{errors.cep}</p>
+              )}
             </FormField>
 
-            <FormField disabled={submited} className={touched.telefone && errors.telefone && 'field error'}>
+            <FormField
+              disabled={submited}
+              className={touched.telefone && errors.telefone && 'field error'}
+            >
               <label>Telefone</label>
               <input
                 type="text"
@@ -132,61 +144,87 @@ const App = ({
                 value={values.telefone}
                 placeholder="Telefone do aluno"
               />
-              {touched.telefone && errors.telefone && <p className='error'>{errors.telefone}</p>}
-
+              {touched.telefone && errors.telefone && (
+                <p className="error">{errors.telefone}</p>
+              )}
             </FormField>
           </Form.Group>
 
           <FormField>
             <label>Curso</label>
 
-            <select disabled={submited} name='curso' onBlur={handleBlur} defaultValue={values.cursos} onChange={handleChange} >
-              <option value = '0'> Selecione um curso</option>
+            <select
+              disabled={submited}
+              name="curso"
+              onBlur={handleBlur}
+              defaultValue={values.cursos}
+              onChange={handleChange}
+            >
+              <option value="0"> Selecione um curso</option>
               console.log("cursos")
               {cursoList()}
-
             </select>
-
-
           </FormField>
 
-          {touched.curso && errors.curso ?  <p className='error'>{errors.curso}</p>: ''}
+          {touched.curso && errors.curso ? (
+            <p className="error">{errors.curso}</p>
+          ) : (
+            ''
+          )}
 
-
-          <button type='submit' className='ui primary basic button' disabled={submited} >Adicionar Aluno</button>
-
-          
+          <button
+            type="submit"
+            className="ui primary basic button"
+            disabled={submited}
+          >
+            Adicionar Aluno
+          </button>
         </Form>
-        {submited ? (<div className="ui success message">
+        {submited ? (
+          <div className="ui success message">
             <div className="header">Aluno Adicionado com Sucesso</div>
-             <a href="/alunos" > Ver alunos </a> |
-             <a href="/adicionarAlunos" > Adicionar Novo Aluno </a>
-          </div>) : ""}
-
+            <a href="/alunos"> Ver alunos </a> |
+            <a href="/adicionarAlunos"> Adicionar Novo Aluno </a>
+          </div>
+        ) : (
+          ''
+        )}
       </Grid.Column>
-
     </Grid>
-
-
-
-
-  )
-}
+  );
+};
 
 const FormikApp = withFormik({
   enableReinitialize: true,
   validationSchema: Yup.object().shape({
-
-    nome: Yup.string().required("Insira o nome do Aluno"),
-    email: Yup.string().email("Insira um email válido").required("Insira o email"),
+    nome: Yup.string().required('Insira o nome do Aluno'),
+    email: Yup.string()
+      .email('Insira um email válido')
+      .required('Insira o email'),
     endereco: Yup.string().required('Insira o Endereço'),
-    cep: Yup.number().typeError("CEP aceita somente números").min(8, 'CPF incorreto').required('Insira o CEP'),
+    cep: Yup.number()
+      .typeError('CEP aceita somente números')
+      .min(8, 'CPF incorreto')
+      .required('Insira o CEP'),
     curso: Yup.string().required('Escolha um Curso'),
-    telefone: Yup.number().typeError("Telefone aceita somente números").required('Insira o Telefone'),
-    cpf: Yup.number().typeError("CPF aceita somente números").min(11, 'CPF incorreto').required('Insira o CPF')
-
+    telefone: Yup.number()
+      .typeError('Telefone aceita somente números')
+      .required('Insira o Telefone'),
+    cpf: Yup.number()
+      .typeError('CPF aceita somente números')
+      .min(11, 'CPF incorreto')
+      .required('Insira o CPF'),
   }),
-  mapPropsToValues({ nome, email, cpf, endereco, cep, telefone, curso, listCursos }) {
+  mapPropsToValues({
+    nome,
+    email,
+    cpf,
+    endereco,
+    cep,
+    telefone,
+    curso,
+    listCursos,
+  }) {
     return {
       nome: nome || '',
       email: email || '',
@@ -195,15 +233,15 @@ const FormikApp = withFormik({
       cep: cep || '',
       telefone: telefone || '',
       listCursos: listCursos,
-      curso: curso || '' /* [{ nome: 'Direito', idCurso: 1 }, { nome: "Medicina", idCurso: 2 } */
-    }
+      curso:
+        curso ||
+        '' /* [{ nome: 'Direito', idCurso: 1 }, { nome: "Medicina", idCurso: 2 } */,
+    };
   },
   handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
-        
     setSubmitting(false);
-    
+
     try {
-      
       api.post('./alunos', {
         nome: values.nome,
         cpf: values.cpf,
@@ -212,15 +250,13 @@ const FormikApp = withFormik({
         email: values.email,
         telefone: values.telefone,
         curso_id: values.curso,
-
       });
       submited = true;
       resetForm();
 
-
       //alert("Aluno adicionado com Sucesso");
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
     /*  console.log({
        nome: values.nome,
@@ -232,7 +268,7 @@ const FormikApp = withFormik({
        id: values.cursos ,
  
      }) */
-  }
-})(App)
+  },
+})(App);
 
-export default FormikApp
+export default FormikApp;

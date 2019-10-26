@@ -14,37 +14,38 @@ const Alunos = props => (
 );
 
 export default class AlunosListar extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
       curso: '',
-      alunos: []
+      alunos: [],
     };
   }
 
   componentDidMount() {
-    api.get('/listarAlunos/' + this.props.match.params.id)
+    api
+      .get('/listarAlunos/' + this.props.match.params.id)
       .then(response => {
         console.log(response);
-        
+
         this.setState({
-          curso : response.data.nome, 
-          alunos: response.data.alunos });
+          curso: response.data.nome,
+          alunos: response.data.alunos,
+        });
       })
-      .catch(function (error) {
+      .catch(function(error) {
         throw error;
-      })
+      });
   }
   alunoList() {
-    return this.state.alunos.map(function (alunoAtual, i) {
+    return this.state.alunos.map(function(alunoAtual, i) {
       return <Alunos aluno={alunoAtual} key={i} />;
     });
   }
   render() {
     return (
-      <div className="tb" >
-        {console.log("curso", this.curso)}
+      <div className="tb">
+        {console.log('curso', this.curso)}
         <h3>Alunos do Curso de {this.state.curso}</h3>
         <table className="table table-bordered" style={{ paddingTop: 20 }}>
           <thead className="thead-light">
@@ -57,14 +58,9 @@ export default class AlunosListar extends Component {
               <th scope="col">Telefone</th>
             </tr>
           </thead>
-          <tbody>
-            {this.alunoList()}
-          </tbody>
+          <tbody>{this.alunoList()}</tbody>
         </table>
       </div>
-
-    )
+    );
   }
-
-
-} 
+}

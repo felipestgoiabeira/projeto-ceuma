@@ -4,7 +4,7 @@ Sistema para gerenciamento de alunos e cursos, usuários logados no sistema pode
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 
 
@@ -15,8 +15,6 @@ docker-compose -f "docker-compose.yml" up -d --build
 ```
 
 ### Run sequelize migrations
-
-Explain what these tests test and why
 
 ```
 docker exec -it backend-server /bin/sh -c "[ -e /bin/bash ] && /bin/bash || /bin/sh"
