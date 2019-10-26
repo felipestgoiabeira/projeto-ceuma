@@ -22,7 +22,6 @@ module.exports = {
             } else {
                 //console.log(user)
                 const senha = await bcrypt.hash(req.body.senha, 12)
-                console.log(senha)
                 await Users.create({
                     nome: req.body.nome,
                     email: req.body.email,

@@ -1,4 +1,7 @@
-require("dotenv").config();
+require("dotenv").config({
+    path: process.env.NODE_ENV === "test" ? ".env.test" : ".env"
+  });
+
 var fs = require('fs')
 const logger = require('morgan');
 const express = require('express');

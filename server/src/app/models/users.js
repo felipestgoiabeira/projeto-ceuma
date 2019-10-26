@@ -11,7 +11,6 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
   };
 
-
   //gera a senha codificada 
   users.generateHash = (password) => {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
@@ -19,8 +18,6 @@ module.exports = (sequelize, DataTypes) => {
   users.prototype.validPassword = (password) =>{
     return bcrypt.compareSync(password, this.password)
   };
-
-
 
   return users;
 };
