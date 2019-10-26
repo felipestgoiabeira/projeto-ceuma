@@ -4,7 +4,6 @@ const  auth = require ('../config/passport/auth')
 const alunoController = require('../Controllers/AlunosController');
 const cursosController = require('../Controllers/CursosController');
 
-
 router.get('/alunos',auth.required, alunoController.show);
 
 router.get('/alunos/:id', auth.required, alunoController.index)
