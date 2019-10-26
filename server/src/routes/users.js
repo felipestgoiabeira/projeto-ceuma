@@ -2,13 +2,13 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const keys = require('../app/passport/keys');
-const  auth = require ('./auth')
+const keys = require('../config/passport/keys');
+const  auth = require ('../config/passport/auth')
 
 
 // Load input validation
-const validateRegisterInput = require('../app/passport/validation/resgister');
-const validateLoginInput = require("../app/passport/validation/login");
+const validateRegisterInput = require('../config/passport/validation/resgister');
+const validateLoginInput = require("../config/passport/validation/login");
 // Load User model
 const User = require("../app/models").users;
 
@@ -110,14 +110,11 @@ router.post("/register", (req, res) => {
 
 
 router.get('/current', auth.required, (req, res, next) => {
-
   const { payload: { id } } = req;
   User.findByPk(id).then( (user) => {
       if(!user) {
-        
         return res.sendStatus(400);
       }
-
       return res.json({ user: user });
     });
   }

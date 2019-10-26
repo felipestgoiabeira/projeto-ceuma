@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const Aluno = require('../app/models').alunos
 const Curso = require('../app/models').cursos
-const  auth = require ('./auth')
+const  auth = require ('../config/passport/auth')
 
 
 // -> Express RestAPIs
@@ -45,7 +45,7 @@ router.get("/download/alunos", async function (req, res) {
         console.log(error)
     }
 	
-        }
+}
    
 );
 
@@ -82,7 +82,7 @@ router.get("/download/cursos", auth.required,async function (req, res) {
         console.log(error)
     }
 	
-        }
+}
    
 );
 

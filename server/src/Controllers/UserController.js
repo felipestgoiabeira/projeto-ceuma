@@ -32,13 +32,9 @@ module.exports = {
                 return res.json({ mensagem: "usuario criado" });
             }
 
-
         } catch (error) {
             res.send(error);
         }
-
-
-
 
     },
 
@@ -71,7 +67,6 @@ module.exports = {
                 res.json('Email inválido')
             }
 
-
             return res.send(users);
 
         } catch (error) {
@@ -102,8 +97,6 @@ module.exports = {
             return res.sendStatus(401).json(error);
         }
     },
-
-
 
     async destroy(req, res) {
         try {
